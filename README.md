@@ -9,3 +9,5 @@ WebVR examples and scouting activities
  * [TheAGE98](https://bit.ly/2nGUybk)
  
 MarkDown [syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
+
+Images are courtesy of [Flickr 360 section] and their respective authors
