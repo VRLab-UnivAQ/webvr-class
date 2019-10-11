@@ -10,4 +10,5 @@ WebVR examples and scouting activities
  
 MarkDown [syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
 
-Images are courtesy of [Flickr 360 section] and their respective authors
+Images are courtesy of [Flickr 360 section](https://www.flickr.com/photos/tags/360/) and their respective authors
+
