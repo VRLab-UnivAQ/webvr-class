@@ -7,6 +7,7 @@ WebVR examples and scouting activities
 * 11 October 2019 
     * [gandalf98](https://bit.ly/35qHnMM)
     * [TheAGE98](https://bit.ly/2nGUybk)
+    * [Scaloppina](https://bit.ly/2IH4Nne)
     * [silvipp] (https://bit.ly/2VxoIdD)
     * [darlbon] (https://bit.ly/35uFqyW)
 MarkDown [syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
