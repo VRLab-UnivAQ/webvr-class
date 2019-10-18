@@ -13,7 +13,7 @@ WebVR examples and scouting activities
     * [cat-di-bon](https://bit.ly/35pVEJj)
     * [Scaloppina](https://bit.ly/33rOS4d)
 * 18 October 2019
-    * ..
+    * [gandalf98](https://bit.ly/33S1O3F)
     * ..
     * ..
     * ..
