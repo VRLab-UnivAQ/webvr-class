@@ -10,7 +10,7 @@ WebVR examples and scouting activities
     * [silvipp](https://bit.ly/2M8r1Ra)
     * [darlbon](https://bit.ly/2IGa7r5)
     * [chiar-dot](https://bit.ly/2pgF0ex)
-    * [cat-di-bon](https://bit.ly/2MpYreg)
+    * [cat-di-bon](https://bit.ly/35pVEJj)
     * [Scaloppina](https://bit.ly/33rOS4d)
 * 18 October 2019
     * ..
