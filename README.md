@@ -15,8 +15,8 @@ WebVR examples and scouting activities
 * 18 October 2019
     * [gandalf98](https://bit.ly/33S1O3F)
     * [Scaloppina](https://bit.ly/2VRm4zx)
-    * 
-    * ..
+    * [chiar-dot](https://bit.ly/2VTlrFo)
+    * [silvipp](https://bit.ly/2Mt1fHs)
     * ..
     * ..
 
