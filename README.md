@@ -17,7 +17,7 @@ WebVR examples and scouting activities
     * [Scaloppina](https://bit.ly/2VRm4zx)
     * [Cat-Di-Bon](https://bit.ly/2MpYreg)
     * [silvipp](https://bit.ly/2Mt1fHs)
-    * ..
+    * [chiar-dot](https://bit.ly/2OZ6T5P)
     * ..
 
     
