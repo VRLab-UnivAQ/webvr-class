@@ -13,3 +13,5 @@ To add creative commons music, choose a URL from
 
 https://freemusicarchive.org/curator/Creative_Commons
 
+Example of user gaze interaction : https://glitch.com/edit/#!/aframe-changing-the-sky
+
