@@ -7,6 +7,7 @@ See [documentation](https://aframe.io/docs/0.9.0/introduction/html-and-primitive
 To introduce a laser pointer moved by the Oculus Go controller:
 
     <a-entity oculus-go-controls></a-entity>
+    <a-entity laser-controls></a-entity>
 
 To add creative commons music, choose a URL from
 
