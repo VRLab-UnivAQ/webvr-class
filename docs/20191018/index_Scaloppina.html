@@ -10,6 +10,9 @@
     <a-scene>
       <a-sky src="360/corridoio360.jpg" rotation="0 0 0"></a-sky>
       <a-cylinder height="1" radius="0.2" position="-0.5 2 -1.5" rotation="0 0 0" color="#82c9ff" shadow></a-box>
+      <a-entity laser-controls="hand: left"></a-entity>
+      <a-entity id="river" geometry="primitive: plane" material="color: blue"
+          position="-10 0 0" sound="src: url(https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Ziklibrenbib/The_Ghost_in_Your_Piano/The_Ghost_in_your_piano/The_Ghost_in_Your_Piano_-_01_-_Climb.mp3.mp3); autoplay: true"></a-entity>
 
       <a-text font="kelsonsans" value="corridoio" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
