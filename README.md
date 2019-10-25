@@ -19,7 +19,7 @@ WebVR examples and scouting activities
     * [silvipp](https://bit.ly/2Mt1fHs)
     * [chiar-dot](https://bit.ly/2VTlrFo)
     * [darlbon](https://bit.ly/2qlGG77)
-    * ..
+    * [TheAGE98](https://bit.ly/2ML3kP5)
 
     
 MarkDown [syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
