@@ -5,18 +5,35 @@
         <title>360&deg; mare</title>
         <meta name="description" content="360&deg; Image - A-Frame">
         <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+        <script> #cominciamo ad inserire le funioni per rendere interattivo il quadrato azurro. 
+            #vanno modificati alcuni parametri come i nomi delle foto ed inserita un'altra foto 3d nella cartella. 
+            #devono essere inserite anche le altre funzioni nel body (vedi altro file da readme)
+            AFRAME.registerComponent('button-interaction-handler', {
+             init: function () {
+              var skyEl = this.el.sceneEl.querySelector('#background');
+              this.el.addEventListener('mouseenter', function () {
+              skyEl.setAttribute('src', '#chineseTemple');  
+              });
+            
+              this.el.addEventListener('mouseleave', function () {
+              skyEl.setAttribute('src', '#backgroundInsideHouse');  
+              });
+             }  
+           });
+        </script> 
     </head>
     <body>
         <a-scene>
-           <a-sky src="360/mare.jpg" rotation="0 0 0"></a-sky>
-           <a-box position="-1 -2 -3" rotation="0 45 0" color="#4cc3d9" shadow></a-box>  
-           <a-entity oculus-go-controls><a/entity>
+           <a-sky src="360/mare.jpg" rotation="0 0 0"></a-sky>                                                    #immagine 360 sfondo
+           <a-text font="kelsonsans" value="mare" width="6" position="-2.5 0.25 -1.5" rotation="0 15 0"></a-text> #scritta mare
+           <a-box position="-1 -2 -3" rotation="0 45 0" color="#4cc3d9" shadow></a-box>                           #scatoletta azzurra  
+          
+           <a-entity oculus-go-controls></a-entity>                                                               #oculus e laser
            <a-entity laser-controls></a-entity>
-           <a-text font="kelsonsans" value="mare" width="6" position="-2.5 0.25 -1.5"
-              rotation="0 15 0"></a-text>
+          
            <a-entity id="musica1" geometry="primitive: plane" material="color: blue" position="-10 0 0" 
-            sound="src: url(https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Robin_Grey/Only_The_Missle/Robin_Grey_-_01_-_These_Days.mp3); autoplay: true">
-           </a-entity>
+            sound="src: url(https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Robin_Grey/Only_The_Missle/Robin_Grey_-_01_-_These_Days.mp3); 
+            autoplay: true"></a-entity>                                                                           #musichetta
         </a-scene>
     </body>
   </html>
