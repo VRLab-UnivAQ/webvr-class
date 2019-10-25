@@ -9,12 +9,12 @@
     <body>
         <a-scene>
            <a-sky src="360/Stelle.jpg" rotation="0 0 0"></a-sky>
-           <a-box position="-1 -2 -3" rotation="0 45 0" color="#4cc3d9" shadow></a-box>  
+           <a-box position="-1 -2 -3" rotation="0 45 0" color="#54aedb" shadow></a-box>  
            <a-entity oculus-go-controls><a/entity>
            <a-entity laser-controls></a-entity>
            <a-text font="kelsonsans" value="Stelle" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
-           <a-entity id="musica1" geometry="primitive: plane" material="color: orange" position="-10 0 0" 
+           <a-entity id="musica1" geometry="primitive: plane" material="color: blue" position="-10 0 0" 
             sound="src: url(https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Robin_Grey/Only_The_Missle/Robin_Grey_-_01_-_These_Days.mp3); autoplay: true">
            </a-entity>
         </a-scene>
