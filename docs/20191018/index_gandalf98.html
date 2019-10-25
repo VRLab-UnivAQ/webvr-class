@@ -34,6 +34,19 @@
            <a-entity id="musica1" geometry="primitive: plane" material="color: blue" position="-10 0 0" 
             sound="src: url(https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Creative_Commons/Robin_Grey/Only_The_Missle/Robin_Grey_-_01_-_These_Days.mp3); 
             autoplay: true"></a-entity>                                                                           #musichetta
-        </a-scene>
+          
+          <a-assets>
+              <img id="backgroundInsideHouse" crossorigin="anonymous" src="360/mare.jpg">
+              <img id="chineseTemple" crossorigin="anonymous" src="https://cdn.glitch.com/e6225ccd-c32e-4cf8-b039-e78814a8cb78%2Fbg-1.jpg">
+          </a-assets>           #definendo prima l'immage di sfondo impostiamo il programma in modo che, interagendo con il quadrato, si passi ad un'altra immagine.
+          
+          <a-plane button-interaction-handler position="-1 -2 -3" height="2" width="5" color="#4cc3d9" position="-1 -2 -3">     
+             <a-text value="Trip to China" scale="2 2 2" align="center" ></a-text>    
+          </a-plane> #impostiamo il bottone di interazione nello stesso luogo del quarato azzurro. grazie alla funzione text dovrebbe uscire la scritta trip to China.
+          
+          <a-camera> 
+            <a-cursor color="#11D8C4" fuse="true" timeout="10"></a-cursor> 
+          </a-camera> #chiedere, penso sia per il puntatore nero. 
+      </a-scene>
     </body>
   </html>
