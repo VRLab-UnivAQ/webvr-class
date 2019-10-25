@@ -6,7 +6,7 @@ WebVR examples and scouting activities
 * [4 October 2019](https://vrlab-univaq.github.io/webvr-class/20191004/)
 * 11 October 2019 
     * [gandalf98](https://bit.ly/35qHnMM)
-    * [TheAGE98]
+    * [TheAGE98](https://bit.ly/31ERJW8)
     * [silvipp](https://bit.ly/2M8r1Ra)
     * [darlbon](https://bit.ly/2IGa7r5)
     * [chiar-dot](https://bit.ly/2pgF0ex)
