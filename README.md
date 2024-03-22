@@ -14,7 +14,7 @@ WebVR samples demos from XXXXXX student at:
 My basic example at:
 
 
-   https://github.com/VRLab-UnivAQ/webvr-class/2024
+   [https://github.com/VRLab-UnivAQ/webvr-class/2024](https://vrlab-univaq.github.io/webvr-class/2024)
    
 Images are courtesy of [Flickr 360 section](https://www.flickr.com/photos/tags/360/) and their respective authors
 
