@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! • A-Frame</title>
+    <meta name="description" content="Hello, World! • A-Frame">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
+        <a-asset-item id="tree"  position="0 0 0" src="/modelli/simple_japanese_tree.glb"></a-asset-item>
+      </a-assets>
+      <a-entity gltf-model="#tree"></a-entity>
+    </a-scene>
+  </body>
+</html>
