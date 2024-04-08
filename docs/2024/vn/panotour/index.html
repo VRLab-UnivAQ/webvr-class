@@ -1,1 +1,18 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Esercitazione Panotour con navigazione in aframe</title>
+    <meta name="description" content="Esercitazione Panotour con navigazione in aframe">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #ECECEC">
+      <a-assets>
+        <img id="hallpreview" src="hallpreview.png">
+      </a-assets>
+      <a-sky src="../foto/53486699870_6e256da1c7_o.jpg" rotation="0 0 0"></a-sky>
+      <a-link href="stanza_2.html" title="War Room" image="#wrpreview"></a-link>
+    </a-scene>
+  </body>
+</html>
