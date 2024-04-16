@@ -8,6 +8,8 @@
     <script src="js/components/aframe-tooltip-component.js"></script>
     <script src="js/components/camera-position.js"></script>
     <script src="js/components/link-controls.js"></script>
+    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
+    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
     </head>
   <body>
     <a-scene
@@ -54,10 +56,9 @@
               position="0 -1.5 0"
               rotation="0 0 0"></a-text>
       
-      <!-- controlli camera da scriptesterno -->
-      <!-- Controlii camera e movimento da mouse e tastiera WASD
-      <a-entity camera look-controls wasd-controls position="-0 0 6" rotation="0 -45 0"></a-entity>
-      -->
+      <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
   </body>
 </html>
