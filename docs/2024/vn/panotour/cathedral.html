@@ -5,13 +5,23 @@
     <title>Esercitazione Panotour con navigazione in A-Frame</title>
     <meta name="description" content="Esercitazione Panotour con navigazione in aframe">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  </head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="js/components/aframe-tooltip-component.js"></script>
+    <script src="js/components/camera-position.js"></script>
+    <script src="js/components/link-controls.js"></script>
+    </head>
   <body>
-    <a-scene>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
+  
       <!-- Componenti della pagina -->
       <a-assets>
-        <img id="cathedral" src="foto/50682381258_e927f61efd_6k.jpg">
-        <img id="hallpreview" src="foto/hallpreview.png">
+        <img id="cathedral" crossOrigin="anonymous" src="foto/50682381258_e927f61efd_6k.jpg">
+        <img id="hallpreview" crossOrigin="anonymous" src="foto/hallpreview.png">
       </a-assets>
       
       <!-- Immagine equirettangolare -->
@@ -37,8 +47,10 @@
               align="center"
               position="0 0.2 0"></a-text>
       
-      <!-- Controlii camera e movimento da mouse e tastiera WASD -->
+      <!-- Controlii camera da script esterno -->
+      <!-- Controlii camera e movimento da mouse e tastiera WASD
       <a-entity camera look-controls wasd-controls position="0 0 0"></a-entity>
+       -->
     </a-scene>
 
   </body>
