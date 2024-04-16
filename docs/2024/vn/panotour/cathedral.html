@@ -52,10 +52,9 @@
               align="center"
               position="0 -0.2 0"></a-text>
       
-      <!-- Controlii camera da script esterno -->
-      <!-- Controlii camera e movimento da mouse e tastiera WASD
-      <a-entity camera look-controls wasd-controls position="0 0 0"></a-entity>
-       -->
+      <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
 
   </body>
