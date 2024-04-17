@@ -12,6 +12,12 @@
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
   </head>
   <body>
+     <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+      </head>
     <a-scene background="color: #ECECEC">
       <a-assets>
         <img id="stanza 2" src="foto/Screenshot 2024-04-10 192705.png" >
@@ -21,6 +27,9 @@
 <!--Text-->
       <a-text font="kelsonsans" value="Statens Museum for Kunst" width="6" position="2 1 -6"
               rotation="0 0 0"></a-text>
+            <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
   </body>
 </html>
