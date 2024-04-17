@@ -12,12 +12,20 @@
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
   </head>
   <body>
-    <a-scene background="color: #ECECEC">
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
       <a-assets>
         <img id="altraPreview" src="foto/Screenshot 2024-04-10 192947.png">
       </a-assets>
       <a-sky src="foto/30634478743_37010f51b3_o.jpg" rotation="0 -180 0"></a-sky>
       <a-link href="index.html" title="Museo" image="#altraPreview" position="-10 2 -12"></a-link>
+ <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
   </body>
 </html>
