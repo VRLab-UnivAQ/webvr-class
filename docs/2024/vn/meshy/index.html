@@ -5,17 +5,14 @@
   <meta name="description" content="Model Viewer: 3d mesh AI generated">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="model-viewer.js"></script>
 </head>
 <body>
-<a-scene
-  renderer="colorManagement: true;"
-  model-viewer="gltfModel: #statue; title: Statue">
+<a-scene>
   <a-assets>
-    <a-asset-item id="statue"
-      src="assets/ancient_ruined_statue.glb"
-      response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+    <a-asset-item id="statua" src="assets/ancient_ruined_statue.glb"></a-asset-item>
   </a-assets>
+
+    <a-entity gltf-model="#statua"></a-entity>
 </a-scene>
 </body>
 </html>
