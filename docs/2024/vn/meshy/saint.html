@@ -1,0 +1,17 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Model Viewer: 3d mesh AI generated</title>
+  <meta name="description" content="Model Viewer: 3d mesh AI generated">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+  <a-assets>
+    <a-asset-item id="saint" src="assets/saint.glb"></a-asset-item>
+  </a-assets>
+    <a-plane color="#008000 " height="10" width="10" rotation="90 0 0"></a-plane>
+    <a-entity gltf-model="#saint" position="0 0.541 0" rotation="0-90 0"></a-entity>
+</a-scene>
+</body>
+</html>
