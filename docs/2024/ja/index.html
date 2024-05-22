@@ -2,63 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Esercitazione Panotour con navigazione in A-Frame</title>
-    <meta name="description" content="Esercitazione Panotour con navigazione in aframe">
+    <title>Esempio di foto immersiva 360°</title>
+    <meta name="description" content="Esempio di foto immersiva 360°">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="js/components/aframe-tooltip-component.js"></script>
-    <script src="js/components/camera-position.js"></script>
-    <script src="js/components/link-controls.js"></script>
-    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
-    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
-    </head>
+  </head>
   <body>
-    <a-scene
-      raycaster="far: 100; objects: [link];"
-      cursor="rayOrigin: mouse"
-      camera-position
-      environment>
-      <!-- Componenti della pagina -->
-      <a-assets>
-        <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg"><!-- INSERISCI LA TUA IMMAGINE EQUIRETTANGOLOARE -->
-        <img id="aristodemopreview" crossOrigin="anonymous" src="foto/aristodemopreview.jpg"> <!-- IMMAGINE ALL'INTERNO DEL CERCHIO/LINK AD ALTRA STANZA-->
-        <img id="pianopreview" crossOrigin="anonymous" src="foto/pianopreview.jpg"> <!-- IMMAGINE ALL'INTERNO DEL CERCHIO/LINK AD ALTRA STANZA-->
-      </a-assets>
-      
-      <!-- Immagine equirettangolare -->
-      <a-sky src="#sky" rotation="0 -80 0"></a-sky>
-      
-      <!-- Link stanza 1: Atrio Villa  -->
-      <a-link href="atrio-villa.html"
-              title="Villa Ventilj - Aristodemo Ventilj"
-              image="#aristodemopreview"
-              position="-3.5 0 -6"
-              ></a-link>
-      
-      <!-- Link a stanza 2: Piano nobile  -->
-      <a-link href="pianonobile.html"
-              title="Villa Ventilj- Museo Raffaello Pagliaccetti"
-              image="#pianopreview"
-              position="3.5 0 -6"
-              ></a-link> 
+    <a-scene>
+       <a-sky src="../foto/atrioingresso3.jpeg" rotation="0 0 0"></a-sky>
 
-
-      <!-- Testo  -->
-      <a-text font="sourcecodepro"
-              value="Villa Ventilj Mosciano Sant'Angelo"
-              width="7"
-              position="0 -1 0"
-              align="center"
-              rotation="0 0 0"></a-text>
-      <a-text font="sourcecodepro"
-              value="Museo di Raffaello Pagliaccetti"
-              width="5"
-              align="center"      
-              position="0 -1.5 0"
-              rotation="0 0 0"></a-text>
-      
-      <!-- Controlli VR vedi: js/components/link-controls.js-->
-      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
-      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+       <a-text font="kelsonsans" value="360 photo test" width="6" position="-2.5 0.25 -1.5"
+              rotation="0 15 0"></a-text>
     </a-scene>
   </body>
 </html>
