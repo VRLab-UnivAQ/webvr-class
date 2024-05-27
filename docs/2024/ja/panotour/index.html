@@ -13,6 +13,9 @@
     </head>
   <body>
     <a-scene
+      <a-scene debug>
+     <!-- Altri componenti e entità della tua scena -->
+   
       raycaster="far: 100; objects: [link];"
       cursor="rayOrigin: mouse"
       camera-position
@@ -93,6 +96,7 @@
       <!-- Controlli VR vedi: js/components/link-controls.js-->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
     </a-scene>
   </body>
 </html>
