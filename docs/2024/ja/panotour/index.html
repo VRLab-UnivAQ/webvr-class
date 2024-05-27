@@ -13,13 +13,6 @@
     </head>
   <body>
     <a-scene
-      <a-scene debug>
-     <!-- Altri componenti e entità della tua scena -->
-   
-      raycaster="far: 100; objects: [link];"
-      cursor="rayOrigin: mouse"
-      camera-position
-      environment>
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
@@ -71,7 +64,7 @@
               ></a-link> 
       
       <!-- Cilindro per coprire il treppiedi con testo -->
-      <a-entity position="10 -3.5 -9" rotation="0 0 0">
+      <a-entity position="10 -144 -9" rotation="0 0 0">
         <a-cylinder radius="3" height="0.5" color="#ffffff"></a-cylinder>
         <a-entity position="0 0.25 0">
           <a-text value="Benvenuti a Villa Ventilj" color="orange" width="8" align="center"></a-text>
@@ -96,7 +89,6 @@
       <!-- Controlli VR vedi: js/components/link-controls.js-->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
-    </a-scene>
     </a-scene>
   </body>
 </html>
