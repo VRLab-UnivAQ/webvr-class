@@ -12,7 +12,8 @@
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
     </head>
   <body>
-    <a-scene
+      <a-scene debug>
+            <a-scene
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
@@ -90,5 +91,6 @@
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
+        </a-scene>
   </body>
 </html>
