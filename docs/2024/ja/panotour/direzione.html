@@ -22,19 +22,28 @@
   
       <!-- Componenti della pagina -->
       <a-assets>
-        <img id="aristodemo" crossOrigin="anonymous" src="foto/atrio1.jpeg">
-        <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
+        <img id="salaartipreview" crossOrigin="anonymous" src="foto/artipreview.jpg">
+        <img id="sky" crossOrigin="anonymous" src="foto/sala_arti.jpeg">
+        <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        
       </a-assets>
       
       <!-- Immagine equirettangolare -->
-      <a-sky src="#aristodemo"
+      <a-sky src="#salaartipreview"
              rotation="0 0 0"></a-sky>
       
-      <!-- Link ad altra stanza -->
+      <!-- Link ad altra stanza torna indietro -->
       <a-link href="index.html"
-              title="Villa Ventilj"
-              image="#hallpreview"
+              title="Torna all'ingresso"
+              image="#vetratapreview"
               position="5 0.25 0"
+              rotation="0 90 0"></a-link>
+      
+        <!-- Link ad altra stanza Sala arti -->
+      <a-link href="salaarti.html"
+              title="Sala delle arti"
+              image="#salaartipreview"
+              position="-5 0.25 0"
               rotation="0 90 0"></a-link>
 
       <!-- Testo  -->
@@ -43,17 +52,7 @@
               width="7"
               align="center"
               position="0 0.7 0"></a-text>
-      <a-text font="sourcecodepro"
-              value="Pasquale Ventilj"
-              width="5"
-              align="center"
-              position="0 0.2 0"></a-text>
-      <a-text font="sourcecodepro"
-              value="(Mosciano Sant'Angelo)"
-              width="5"
-              align="center"
-              position="0 -0.2 0"></a-text>
-      
+    
       <!-- Controlli VR vedi: js/components/link-controls.js-->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
