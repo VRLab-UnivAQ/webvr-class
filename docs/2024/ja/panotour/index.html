@@ -12,7 +12,6 @@
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
     </head>
   <body>
-      <a-scene debug>
             <a-scene
       <!-- Componenti della pagina -->
       <a-assets>
@@ -65,8 +64,8 @@
               ></a-link> 
       
       <!-- Cilindro per coprire il treppiedi con testo -->
-      <a-entity position="10 -130 -9" rotation="0 0 0">
-        <a-cylinder radius="5" height="0.5" color="#ffffff"></a-cylinder>
+      <a-entity position="10 -130 12" rotation="0 0 0">
+        <a-cylinder radius="8" height="0.5" color="#ffffff"></a-cylinder>
         <a-entity position="0 0.25 0">
           <a-text value="Benvenuti a Villa Ventilj" color="orange" width="8" align="center"></a-text>
         </a-entity>
@@ -91,6 +90,5 @@
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
-        </a-scene>
   </body>
 </html>
