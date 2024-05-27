@@ -11,8 +11,14 @@
     <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
     </head>
+  </head>
   <body>
-            <a-scene
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+      
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
@@ -21,7 +27,6 @@
         <img id="esternopreview" crossOrigin="anonymous" src="foto/esternodimora.jpg">
         <img id="cappellapreview" crossOrigin="anonymous" src="foto/cappellapreview.jpg">
         <img id="direzionepreview" crossOrigin="anonymous" src="foto/direzionepreview.jpg">
-        
       </a-assets>
       
       <!-- Immagine equirettangolare -->
