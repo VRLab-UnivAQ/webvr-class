@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ufficio Pasquale Ventilj</title>
+    <meta name="description" content="Pasquale Ventilj - Mosciano Sant'Angelo">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="js/components/aframe-tooltip-component.js"></script>
+    <script src="js/components/camera-position.js"></script>
+    <script src="js/components/link-controls.js"></script>
+    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
+    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
+    </head>
+  <body>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
+  
+      <!-- Componenti della pagina -->
+      <a-assets>
+        <img id="aristodemo" crossOrigin="anonymous" src="foto/atrio1.jpeg">
+        <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
+      </a-assets>
+      
+      <!-- Immagine equirettangolare -->
+      <a-sky src="#aristodemo"
+             rotation="0 0 0"></a-sky>
+      
+      <!-- Link ad altra stanza -->
+      <a-link href="index.html"
+              title="Villa Ventilj"
+              image="#hallpreview"
+              position="5 0.25 0"
+              rotation="0 90 0"></a-link>
 
+      <!-- Testo  -->
+      <a-text font="sourcecodepro"
+              value="Villa Ventilj"
+              width="7"
+              align="center"
+              position="0 0.7 0"></a-text>
+      <a-text font="sourcecodepro"
+              value="Pasquale Ventilj"
+              width="5"
+              align="center"
+              position="0 0.2 0"></a-text>
+      <a-text font="sourcecodepro"
+              value="(Mosciano Sant'Angelo)"
+              width="5"
+              align="center"
+              position="0 -0.2 0"></a-text>
+      
+      <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
+
+  </body>
+</html>
