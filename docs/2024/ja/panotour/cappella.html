@@ -5,53 +5,20 @@
     <title>Cappella Ventilj</title>
     <meta name="description" content="Stanza con foto 360">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-      <script>
-    AFRAME.registerComponent('change-view', {
-      init: function () {
-        var el = this.el;
-        el.addEventListener('click', function () {
-          var targetSky1 = document.querySelector('#sky1');
-          var targetSky2 = document.querySelector('#sky2');
-          if (targetSky1.getAttribute('visible')) {
-            targetSky1.setAttribute('visible', false);
-            targetSky2.setAttribute('visible', true);
-          } else {
-            targetSky1.setAttribute('visible', true);
-            targetSky2.setAttribute('visible', false);
-          }
-        });
-      }
-    });
-  </script>
-  </head>
+        </head>
   <body>
     <a-scene>
       <!-- Prima vista della stanza con foto 360 -->
       <a-sky id="sky1" src="foto/chiesa_2.jpeg" rotation="0 180 0"></a-sky>
 
-      <!-- Seconda vista della stanza con foto 360 -->
-      <a-sky id="sky2" src="foto/chiesa3.jpeg" rotation="0 0 0" visible="false"></a-sky>
 
       <!-- Link per tornare alla pagina iniziale -->
       <a-link href="index.html" title="Torna all'ingresso" position="-15 2 8" rotation="0 -45 0"></a-link>
 
-      <!-- Pulsante per cambiare vista alla foto 360° 2 -->
-      <a-entity class="clickable" position="-2 1.6 -3" rotation="0 45 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
-        <a-text value="Vista 2" align="center" position="0 0 0.01"></a-text>
-        <a-event name="click" target="#sky1" event-set__1="_event: click; visible: false"></a-event>
-        <a-event name="click" target="#sky2" event-set__2="_event: click; visible: true"></a-event>
-      </a-entity>
-
-      <!-- Pulsante per cambiare vista alla foto 360° 1 -->
-      <a-entity class="clickable" position="2 1.6 -3" rotation="0 -45 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
-        <a-text value="Vista 1" align="center" position="0 0 0.01"></a-text>
-        <a-event name="click" target="#sky1" event-set__1="_event: click; visible: true"></a-event>
-        <a-event name="click" target="#sky2" event-set__2="_event: click; visible: false"></a-event>
-      </a-entity>
 
             <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
-        <a-cylinder radius="40" height="0.5" color="#ffffff"></a-cylinder>
+        <a-cylinder radius="20" height="0.5" color="#ffffff"></a-cylinder>
         <a-entity position="0 -100 0">
           <a-text value="Benvenuti a Villa Ventilj" color="orange" width="30" align="center"></a-text>
         </a-entity>
