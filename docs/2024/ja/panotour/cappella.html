@@ -1,50 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Cappella Ventilj</title>
-  <meta name="description" content="Cappella Ventilj - Mosciano Sant'Angelo">
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-</head>
-<body>
-  <a-scene raycaster="far: 100; objects: [clickable];" cursor="rayOrigin: mouse" camera-position environment>
-    <!-- Componenti della pagina -->
-    <a-assets>
-      <img id="entrata" src="foto/chiesa_interno2.jpeg">
-      <img id="interno1" src="foto/chiesa_interno1.jpeg">
-      <img id="interno2" src="foto/chiesa3.jpeg">
-    </a-assets>
-    
-    <!-- Immagine equirettangolare iniziale -->
-    <a-sky id="sky" src="#entrata" rotation="0 0 0"></a-sky>
-    
-    <!-- Camera principale -->
-    <a-entity id="cameraRig" position="0 1.6 0">
-      <a-camera></a-camera>
-    </a-entity>
+  <head>
+    <meta charset="utf-8">
+    <title>Stanza con Foto 360</title>
+    <meta name="description" content="Stanza con foto 360">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Prima vista della stanza con foto 360 -->
+      <a-sky id="sky1" src="foto/chiesa_2.jpeg" rotation="0 180 0"></a-sky>
 
-    <!-- Hotspot per passare all'interno della stanza -->
-    <a-entity class="clickable" position="1 1.6 -3" rotation="0 -30 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
-      <a-text value="Entra" align="center" position="0 0 0.01"></a-text>
-      <a-event name="click" target="#sky" event-set__1="_event: click; material.src: #interno1"></a-event>
-    </a-entity>
+      <!-- Seconda vista della stanza con foto 360 -->
+      <a-sky id="sky2" src="foto/chiesa3.jpeg" rotation="0 0 0" visible="false"></a-sky>
 
-    <!-- Hotspot per avanzare ulteriormente nella stanza -->
-    <a-entity class="clickable" position="0 1.6 -3" rotation="0 0 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
-      <a-text value="Avanza" align="center" position="0 0 0.01"></a-text>
-      <a-event name="click" target="#sky" event-set__1="_event: click; material.src: #interno2"></a-event>
-    </a-entity>
+      <!-- Link per tornare alla pagina iniziale -->
+      <a-link href="index.html" title="Torna all'ingresso" position="2 1.6 -3" rotation="0 -45 0"></a-link>
 
-    <!-- Hotspot per tornare all'entrata -->
-    <a-entity class="clickable" position="-1 1.6 -3" rotation="0 30 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
-      <a-text value="Indietro" align="center" position="0 0 0.01"></a-text>
-      <a-event name="click" target="#sky" event-set__1="_event: click; material.src: #entrata"></a-event>
-    </a-entity>
+      <!-- Pulsante per cambiare vista alla foto 360° 2 -->
+      <a-entity class="clickable" position="-2 1.6 -3" rotation="0 45 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
+        <a-text value="Vista 2" align="center" position="0 0 0.01"></a-text>
+        <a-event name="click" target="#sky1" event-set__1="_event: click; visible: false"></a-event>
+        <a-event name="click" target="#sky2" event-set__2="_event: click; visible: true"></a-event>
+      </a-entity>
 
-    <!-- Controlli VR vedi: js/components/link-controls.js -->
-    <a-entity id="leftHand" link-controls="hand: left"></a-entity>
-    <a-entity id="rightHand" link-controls="hand: right"></a-entity>
-  </a-scene>
-</body>
+      <!-- Pulsante per cambiare vista alla foto 360° 1 -->
+      <a-entity class="clickable" position="2 1.6 -3" rotation="0 -45 0" geometry="primitive: plane; width: 1; height: 1" material="color: #000; opacity: 0.5">
+        <a-text value="Vista 1" align="center" position="0 0 0.01"></a-text>
+        <a-event name="click" target="#sky1" event-set__1="_event: click; visible: true"></a-event>
+        <a-event name="click" target="#sky2" event-set__2="_event: click; visible: false"></a-event>
+      </a-entity>
+
+      <!-- Controlli VR -->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
+  </body>
 </html>
-     
