@@ -21,18 +21,27 @@
       <a-assets>
         <img id="pianonobile" crossOrigin="anonymous" src="foto/piano_1.jpeg">
         <img id="aristodemopreview" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
+        <img id="hallpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        <img id="hallpreview" crossOrigin="anonymous" src="foto/museopreview.jpg">
       </a-assets>
       
       <!-- Immagine equirettangolare -->
       <a-sky src="#pianonobile"
              rotation="0 0 0"></a-sky>
       
-      <!-- Link ad altra stanza -->
-      <a-link href="index.html"
-              title="Raffaello Pagliaccetti"
-              image="#pianonobile"
-              position="5 0.25 0"
-              rotation="0 90 0"></a-link>
+      <!-- Link ad altra stanza Torna indietro Atrio-villa -->
+      <a-link href="atrio-villa.html"
+              title="Torna Indietro"
+              image="#hallpreview"
+              position="2 0 -5"
+              rotation="0 160 0"></a-link>
+      
+      <!-- Link ad altra stanza Torna Visita il Museo Pagliaccetti -->
+      <a-link href="museopagliaccetti.html"
+              title="Visita il Museo"
+              image="#hallpreview"
+              position="-2 0 5"
+              rotation="0 160 0"></a-link>
 
       <!-- Testo  -->
       <a-text font="sourcecodepro"
