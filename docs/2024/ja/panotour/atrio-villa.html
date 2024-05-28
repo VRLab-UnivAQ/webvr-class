@@ -24,6 +24,7 @@
       <a-assets>
         <img id="aristodemo" crossOrigin="anonymous" src="foto/atrio1.jpeg">
         <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
+        <img id="hallpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
       </a-assets>
       
       <!-- Immagine equirettangolare -->
@@ -32,28 +33,13 @@
       
       <!-- Link ad altra stanza -->
       <a-link href="index.html"
-              title="Villa Ventilj"
+              title="Torna all'ingresso-Villa Ventilj"
               image="#hallpreview"
-              position="5 0.25 0"
-              rotation="0 90 0"></a-link>
+              position="-3.5 0 6"
+              rotation="0 90 0">
+              </a-link>
 
-      <!-- Testo  -->
-      <a-text font="sourcecodepro"
-              value="Villa Ventilj"
-              width="7"
-              align="center"
-              position="0 0.7 0"></a-text>
-      <a-text font="sourcecodepro"
-              value="Pasquale Ventilj"
-              width="5"
-              align="center"
-              position="0 0.2 0"></a-text>
-      <a-text font="sourcecodepro"
-              value="(Mosciano Sant'Angelo)"
-              width="5"
-              align="center"
-              position="0 -0.2 0"></a-text>
-      
+            
       <!-- Controlli VR vedi: js/components/link-controls.js-->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
