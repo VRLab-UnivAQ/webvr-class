@@ -6,6 +6,13 @@
     <meta name="description" content="Stanza con foto 360">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
         </head>
+    <body>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
    <!-- Componenti della pagina -->
       <a-assets>
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
@@ -25,8 +32,8 @@
 
             <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
-        <a-cylinder radius="20" height="0.5" color="#ffffff"></a-cylinder>
-        <a-entity position="0 -100 0">
+        <a-cylinder radius="30" height="0.5" color="#ffffff"></a-cylinder>
+        <a-entity position="0 -110 0">
           <a-text value="Benvenuti a Villa Ventilj" color="orange" width="30" align="center"></a-text>
         </a-entity>
       </a-entity>
