@@ -5,6 +5,24 @@
     <title>Cappella Ventilj</title>
     <meta name="description" content="Stanza con foto 360">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+      <script>
+    AFRAME.registerComponent('change-view', {
+      init: function () {
+        var el = this.el;
+        el.addEventListener('click', function () {
+          var targetSky1 = document.querySelector('#sky1');
+          var targetSky2 = document.querySelector('#sky2');
+          if (targetSky1.getAttribute('visible')) {
+            targetSky1.setAttribute('visible', false);
+            targetSky2.setAttribute('visible', true);
+          } else {
+            targetSky1.setAttribute('visible', true);
+            targetSky2.setAttribute('visible', false);
+          }
+        });
+      }
+    });
+  </script>
   </head>
   <body>
     <a-scene>
