@@ -1,0 +1,24 @@
+AFRAME.registerComponent('navigate-360', {
+  init: function () {
+    var el = this.el;
+
+    // Ottenere i link per le diverse viste 360°
+    var links = el.querySelectorAll('a-link');
+
+    // Gestire il click sui link per cambiare la foto 360°
+    links.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var href = link.getAttribute('href');
+        var imageSrc = link.getAttribute('image');
+
+        // Cambiare la foto 360°
+        var sky = document.querySelector('a-sky');
+        sky.setAttribute('src', imageSrc);
+
+        // Opzionale: Cambiare la posizione della camera o altri attributi della scena
+        // Utilizzare eventi, animazioni, ecc. per transizioni più fluide
+      });
+    });
+  }
+});
