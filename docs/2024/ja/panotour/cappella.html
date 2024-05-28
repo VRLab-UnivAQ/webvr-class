@@ -6,14 +6,21 @@
     <meta name="description" content="Stanza con foto 360">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
         </head>
+   <!-- Componenti della pagina -->
+      <a-assets>
+        <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
+        <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        
+      </a-assets>
+      
+      <!-- Immagine equirettangolare -->
+      <a-sky src="#chiesa"
+             rotation="0 0 0"></a-sky>
   <body>
     <a-scene>
-      <!-- Prima vista della stanza con foto 360 -->
-      <a-sky id="sky1" src="foto/chiesa_2.jpeg" rotation="0 180 0"></a-sky>
-
-
+      
       <!-- Link per tornare alla pagina iniziale -->
-      <a-link href="index.html" title="Torna all'ingresso" position="-15 2 8" rotation="0 -45 0"></a-link>
+      <a-link href="index.html" title="Torna all'ingresso" position="-11 2 4" rotation="0 -90 0" image="#vetratapreview"</a-link>
 
 
             <!-- Cilindro per coprire il treppiedi con testo -->
