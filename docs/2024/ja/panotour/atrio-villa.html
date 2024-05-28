@@ -25,19 +25,28 @@
         <img id="aristodemo" crossOrigin="anonymous" src="foto/atrio1.jpeg">
         <img id="sky" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
         <img id="hallpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+       <img id="museopreview" crossOrigin="anonymous" src="foto/museopreview.jpg">  
       </a-assets>
       
       <!-- Immagine equirettangolare -->
       <a-sky src="#aristodemo"
              rotation="0 0 0"></a-sky>
       
-      <!-- Link ad altra stanza -->
+      <!-- Link ad altra stanza - Torna all'ingresso -->
       <a-link href="index.html"
               title="Torna all'ingresso-Villa Ventilj"
               image="#hallpreview"
+              position="-8 0 -2"
+              rotation="0 90 0">
+              </a-link>
+       <!-- Link ad altra stanza - Sali al piano nobile-Museo -->
+      <a-link href="pianonobile.html"
+              title="Piano nobile-Vai al Museo"
+              image="#museopreview"
               position="0 2 -4"
               rotation="0 0 0">
               </a-link>
+     
       <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="0 -3 -6" rotation="0 0 0">
         <a-cylinder radius="2" height="0.5" color="#ffffff"></a-cylinder>
