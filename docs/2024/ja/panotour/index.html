@@ -28,7 +28,8 @@
         <img id="cappellapreview" crossOrigin="anonymous" src="foto/cappellapreview.jpg">
         <img id="direzionepreview" crossOrigin="anonymous" src="foto/direzionepreview.jpg">
         <a-asset-item id="welcome-character" src="model/sophiawelcome.glb"></a-asset-item>
-        <audio id="welcome-sound" src="audio/benvenuto.mp3"></audio>
+        <audio id="welcome-sound" src="audio/welcome.mp3"></audio>
+        <audio id="background-sound" src="audio/ingresso.mp3" loop="true"></audio>
       </a-assets>
       
       <!-- Immagine equirettangolare -->
@@ -89,6 +90,10 @@
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
+    
+    <!-- Audio di sottofondo -->
+    <a-sound src="#background-sound" autoplay="true" loop="true" volume="0.2"></a-sound>
+  </a-scene>
     
   <!-- Pulsante per disattivare/attivare l'audio -->
   <div id="audioToggle" style="position: absolute; top: 10px; right: 10px; background: #fff; padding: 10px; border-radius: 50%; cursor: pointer;">
