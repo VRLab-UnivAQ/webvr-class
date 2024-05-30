@@ -27,10 +27,15 @@
         <img id="esternopreview" crossOrigin="anonymous" src="foto/esternodimora.jpg">
         <img id="cappellapreview" crossOrigin="anonymous" src="foto/cappellapreview.jpg">
         <img id="direzionepreview" crossOrigin="anonymous" src="foto/direzionepreview.jpg">
+        <a-asset-item id="welcome-character" src="model/sophiawelcome.glb"></a-asset-item>
       </a-assets>
       
       <!-- Immagine equirettangolare -->
       <a-sky src="#sky" rotation="0 -80 0"></a-sky>
+      <!-- Modello del personaggio che dà il benvenuto -->
+      <a-entity gltf-model="#welcome-character" position="0 0 -3" rotation="0 180 0" scale="1 1 1">
+        <a-animation attribute="position" to="0 1 -3" direction="alternate" dur="1000" repeat="indefinite"></a-animation>
+      </a-entity> "Sophia Animated 003 - Animated 3D Woman" (https://skfb.ly/6SO7O) by Renderpeople is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
       
       <!-- Link stanza 1: Cappella  -->
       <a-link href="cappella.html"
