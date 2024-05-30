@@ -7,22 +7,6 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
-     <style>
-      .icon-button {
-        width: 64px;
-        height: 64px;
-        background: url('icons/on.png') no-repeat center center;
-        background-size: contain;
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        z-index: 9999;
-      }
-      .icon-button.sound-off {
-        background-image: url('icons/off.png');
-      }
-    </style>
   </head>
   <body>
     <a-scene raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position environment>
@@ -31,8 +15,7 @@
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
         <audio id="background-music" src="audio/chiesa.mp3" preload="auto"></audio> <!-- Assicurati di avere il file audio nella cartella corretta -->
-        <img id="sound-on-icon" src="icons/on.png">
-        <img id="sound-off-icon" src="icons/off.png">
+      
       </a-assets>
       
       <!-- Immagine equirettangolare -->
