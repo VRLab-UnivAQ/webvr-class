@@ -7,39 +7,32 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
     <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
-    </head>
- <body>
-    <a-scene
-      raycaster="far: 100; objects: [link];"
-      cursor="rayOrigin: mouse"
-      camera-position
-      environment>
   </head>
-  
+  <body>
+    <a-scene raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position environment>
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        <audio id="background-music" src="audio/chiesa.mp3" preload="auto"></audio> <!-- Assicurati di avere il file audio nella cartella corretta -->
       </a-assets>
       
-     <!-- Immagine equirettangolare -->
-      <a-sky src="#chiesa"
-             rotation="0 0 0"></a-sky>
-  <body>
-    <a-scene>
-      
+      <!-- Immagine equirettangolare -->
+      <a-sky src="#chiesa" rotation="0 0 0"></a-sky>
+
+      <!-- Musica di sottofondo -->
+      <a-sound src="#background-music" autoplay="true" loop="true" volume="0.4"></a-sound> <!-- Volume impostato a 0.2 -->
+
       <!-- Link per tornare alla pagina iniziale -->
-      <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link></a-link>/a-link>
+      <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link>
 
-
-            <!-- Cilindro per coprire il treppiedi con testo -->
+      <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
         <a-cylinder radius="30" height="0.5" color="#ffffff"></a-cylinder>
         <a-entity position="0 -110 0">
           <a-text value="Benvenuti a Villa Ventilj" color="orange" width="30" align="center"></a-text>
         </a-entity>
       </a-entity>
-      
 
       <!-- Controlli VR -->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
