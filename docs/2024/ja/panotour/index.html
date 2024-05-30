@@ -75,10 +75,12 @@
               rotation="0 -80 0"
               ></a-link> 
       
-     <!-- Cilindro per coprire il treppiedi con testo -->
+ <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
         <a-cylinder radius="40" height="0.5" color="#ffffff"></a-cylinder>
-        <a-text value="Benvenuti a Villa Ventilj" color="orange" width="30" align="center" position="0 0.75 0"></a-text>
+        <a-entity position="0 0.25 0">
+          <a-text value="Benvenuti a Villa Ventilj" color="orange" width="30" align="center" position="0 1.5 0"></a-text>
+        </a-entity>
       </a-entity>
       
       <!-- Controlli VR vedi: js/components/link-controls.js-->
