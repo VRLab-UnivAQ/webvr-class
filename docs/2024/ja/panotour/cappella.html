@@ -60,16 +60,16 @@
 <!-- Pulsante per disattivare/attivare l'audio -->
     <div id="audioToggle" class="icon-button"></div>
 
-    <script>
-      const audioToggle = document.getElementById('audioToggle');
-      const backgroundSound = document.querySelector('[sound]');
-      let isSoundOn = true;
+     <script>
+    const audioToggle = document.getElementById('audioToggle');
+    const backgroundSound = document.querySelector('[sound]');
+    let isSoundOn = true;
 
-      audioToggle.addEventListener('click', () => {
-        isSoundOn = !isSoundOn;
-        backgroundSound.components.sound[isSoundOn ? 'playSound' : 'pauseSound']();
-        audioToggle.classList.toggle('sound-off', !isSoundOn);
-      });
+    audioToggle.addEventListener('click', () => {
+      isSoundOn = !isSoundOn;
+      backgroundSound.components.sound[isSoundOn ? 'playSound' : 'pauseSound']();
+      audioToggle.textContent = isSoundOn ? '🔊' : '🔇';
+    });
     </script>
   </body>
 </html>
