@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Museo Pagliaccetti</title>
+    <meta name="description" content="Museo Pagliaccetti- Villa Ventilj Mosciano Sant'Angelo">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="js/components/aframe-tooltip-component.js"></script>
+    <script src="js/components/camera-position.js"></script>
+    <script src="js/components/link-controls.js"></script>
+    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
+    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
+    </head>
+  <body>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
+  
+      <!-- Componenti della pagina -->
+      <a-assets>
+        <img id="salaartipreview" crossOrigin="anonymous" src="foto/artipreview.jpg">
+        <img id="museoingresso" crossOrigin="anonymous" src="foto/museo_ingresso.jpeg">
+        <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        
+      </a-assets>
+      
+      <!-- Immagine equirettangolare -->
+      <a-sky src="#museoingresso"
+             rotation="0 0 0"></a-sky>
+      
+      <!-- Link ad altra stanza torna indietro -->
+      <a-link href="pianonobile.html"
+              title="Torna indietro"
+              image="#vetratapreview"
+              position="5 0.25 0"
+              rotation="0 90 0"></a-link>
+      
+        <!-- Link ad altra stanza Sala arti -->
+      <a-link href="salazena.html"
+              title="Sala Zena"
+              image="#salazenapreview"
+              position="-10 0.25 0"
+              rotation="0 90 0"></a-link>
 
+     
+    
+      <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
+
+  </body>
+</html>
