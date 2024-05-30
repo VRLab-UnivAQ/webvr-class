@@ -38,7 +38,7 @@
       <!-- Modello del personaggio che dà il benvenuto -->
       <a-entity gltf-model="#welcome-character" position="-14 -12 -4" rotation="0 80 0" scale="0.1 0.1 0.1">
         <a-animation attribute="position" to="0 1 -3" direction="alternate" dur="1000" repeat="indefinite"></a-animation>
-        <a-sound id="welcomeSound" src="#welcome-sound" on="mouseenter"></a-sound>
+        <a-sound id="welcome-sound" src="#welcome-sound" on="mouseenter"></a-sound>
       </a-entity> <!--Sophia Animated 003 - Animated 3D Woman" (https://skfb.ly/6SO7O) by Renderpeople is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
       
       <!-- Link stanza 1: Cappella  -->
@@ -113,7 +113,7 @@
 
     // Avvio audio di benvenuto quando l'utente guarda verso il personaggio
     const welcomeCharacter = document.getElementById('welcomeCharacter');
-    const welcomeSound = document.getElementById('welcomeSound');
+    const welcomeSound = document.getElementById('welcome-sound');
     const camera = document.querySelector('a-camera');
 
     welcomeCharacter.addEventListener('mouseenter', () => {
