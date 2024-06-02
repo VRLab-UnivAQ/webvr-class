@@ -15,7 +15,7 @@
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
         <audio id="background-music" src="audio/chiesa.mp3" preload="auto"></audio> <!-- Assicurati di avere il file audio nella cartella corretta -->
-      
+        <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
       </a-assets>
       
       <!-- Immagine equirettangolare -->
@@ -27,13 +27,13 @@
       <!-- Link per tornare alla pagina iniziale -->
       <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link>
 
-      <!-- Cilindro per coprire il treppiedi con testo -->
-      <a-entity position="15 -150 0" rotation="0 0 0">
-        <a-cylinder radius="40" height="0.5" color="#ffffff"></a-cylinder>
-        <a-entity position="15 -110 0">
-          <a-text value="Benvenuti a Villa Ventilj" color="orange" width="100" align="center"></a-text>
-        </a-entity>
-      </a-entity>
+     
+ <!-- Cilindro per coprire il treppiedi con testo -->
+      <a-entity position="10 -130 12" rotation="0 0 0">
+        <a-cylinder radius="50" height="0.5" color="#ffffff"></a-cylinder>
+        <a-entity position="0 1 0">
+       <a-image src="#logo" position="0 0 7" width="70" height="70" rotation="90 115 0" scale="-1 1 1"></a-image>
+      </a-entity>     
 
       <!-- Controlli VR -->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
