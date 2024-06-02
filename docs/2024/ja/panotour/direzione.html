@@ -25,6 +25,7 @@
         <img id="salaartipreview" crossOrigin="anonymous" src="foto/artipreview.jpg">
         <img id="direzione" crossOrigin="anonymous" src="foto/direzione360.jpeg">
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+        <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
         
       </a-assets>
       
@@ -45,6 +46,14 @@
               image="#salaartipreview"
               position="-10 0.25 0"
               rotation="0 90 0"></a-link>
+
+           
+ <!-- Cilindro per coprire il treppiedi con testo -->
+      <a-entity position="10 -130 12" rotation="0 0 0">
+        <a-cylinder radius="50" height="0.5" color="#ffffff"></a-cylinder>
+        <a-entity position="0 1 0">
+       <a-image src="#logo" position="0 0 7" width="70" height="70" rotation="90 115 0" scale="-1 1 1"></a-image>
+      </a-entity>     
 
      
     
