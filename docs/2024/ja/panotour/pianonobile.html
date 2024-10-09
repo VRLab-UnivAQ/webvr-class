@@ -15,8 +15,11 @@
     <a-scene
       raycaster="far: 100; objects: [link];"
       cursor="rayOrigin: mouse"
-      camera-position
       environment>
+
+      <!-- Camera con rotazione personalizzata -->
+      <a-entity camera look-controls position="0 1.6 0" rotation="0 90 0"></a-entity>
+      
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="pianonobile" crossOrigin="anonymous" src="foto/piano_1.jpeg">
