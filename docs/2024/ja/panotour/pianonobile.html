@@ -18,12 +18,12 @@
       environment>
 
       <!-- Camera con rotazione personalizzata -->
-      <a-entity camera look-controls position="0 1.6 0" rotation="0 90 0"></a-entity>
+      <a-entity camera look-controls position="0 1.6 0" rotation="0 180 0"></a-entity>
       
       <!-- Componenti della pagina -->
       <a-assets>
-        <img id="pianonobile" crossOrigin="anonymous" src="foto/piano_1.jpeg">
-        <img id="aristodemopreview" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg">
+        <img id="pianonobile" crossOrigin="anonymous" src="foto/piano_1.jpeg" alt="Piano nobile di Villa Ventilj">
+        <img id="aristodemopreview" crossOrigin="anonymous" src="foto/atrioingresso3.jpeg" alt="Anteprima dell'atrio d'ingresso">>
         <img id="hallpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
         <img id="museopreview" crossOrigin="anonymous" src="foto/museopreview.jpg">
         <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
@@ -56,7 +56,13 @@
        <a-image src="#logo" position="0 0 0" width="70" height="70" rotation="90 45 -118" scale="-1 1 1"></a-image>
       </a-entity>      
 
-
+ <!-- Figura con descrizione del piano nobile -->
+  <figure>
+    <img src="foto/piano_1.jpeg" alt="Vista del piano nobile di Villa Ventilj">
+    <figcaption>
+      Il piano nobile di Villa Ventilj rappresenta una delle parti più prestigiose dell'edificio, situata al primo piano dell'edificio, dove sono collocate le stanze del Museo Pagliaccetti e un tempo vi erano le camere da letto delle suore di carità
+    </figcaption>
+  </figure>
     
       
       <!-- Controlli VR vedi: js/components/link-controls.js-->
