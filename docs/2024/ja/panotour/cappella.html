@@ -19,7 +19,7 @@
       
       <!-- Immagine equirettangolare iniziale -->
       <a-sky src="#chiesa" rotation="0 0 0"></a-sky>
-      <a-sky src="#chiesa1" rotation="0 0 0"></a-sky>
+      
 
       <!-- Musica di sottofondo -->
       <a-sound id="backgroundSound" src="#background-music" autoplay="true" loop="true" volume="0.8"></a-sound> 
@@ -46,6 +46,20 @@
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
+    <script>
+      
+  let currentScene = 1; // Stato per tenere traccia della scena corrente
+
+  function changeScene() {
+    const sky = document.querySelector('#sky');
+    if (currentScene === 1) {
+      sky.setAttribute('src', '#chiesa');
+      currentScene = 2; // Aggiorna stato alla scena 2
+    } else {
+      sky.setAttribute('src', '#chiesa1');
+      currentScene = 1; // Torna alla scena 1
+    }
+  }
 
     <!-- Pulsante per disattivare/attivare l'audio -->
     <div id="audioToggle" style="position: absolute; top: 10px; right: 10px; background: #fff; padding: 10px; border-radius: 50%; cursor: pointer;">
