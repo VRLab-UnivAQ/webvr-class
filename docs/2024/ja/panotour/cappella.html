@@ -5,56 +5,68 @@
     <title>Cappella Ventilj</title>
     <meta name="description" content="Stanza con foto 360">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
-    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
   </head>
   <body>
     <a-scene raycaster="far: 100; objects: [link];" cursor="rayOrigin: mouse" camera-position environment>
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
+        <img id="chiesa2" crossOrigin="anonymous" src="foto/chiesa_2b.jpeg"> <!-- Nuova immagine -->
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
         <audio id="background-music" src="audio/chiesa.mp3" preload="auto"></audio> <!-- Assicurati di avere il file audio nella cartella corretta -->
         <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
       </a-assets>
       
-      <!-- Immagine equirettangolare -->
+      <!-- Immagine equirettangolare iniziale -->
       <a-sky src="#chiesa" rotation="0 0 0"></a-sky>
 
       <!-- Musica di sottofondo -->
-      <a-sound src="#background-music" autoplay="true" loop="true" volume="0.8"></a-sound> 
+      <a-sound id="backgroundSound" src="#background-music" autoplay="true" loop="true" volume="0.8"></a-sound> 
 
       <!-- Link per tornare alla pagina iniziale -->
       <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link>
 
-     
- <!-- Cilindro per coprire il treppiedi con testo -->
+      <!-- Link per "camminare" in avanti e cambiare visuale -->
+      <a-link href="#"
+              title="Avanti"
+              image="#chiesa2"  <!-- Immagine preview del secondo panorama -->
+              position="0 0 -5"
+              rotation="0 0 0"
+              onclick="document.querySelector('a-sky').setAttribute('src', '#chiesa2');"></a-link> <!-- Cambia l'immagine 360 -->
+      
+      <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
         <a-cylinder radius="50" height="0.5" color="#ffffff"></a-cylinder>
         <a-entity position="0 1 0">
-       <a-image src="#logo" position="0 0 0" width="70" height="70" rotation="90 120 0" scale="-1 1 1"></a-image>
-      </a-entity>     
+          <a-image src="#logo" position="0 0 0" width="70" height="70" rotation="90 120 0" scale="-1 1 1"></a-image>
+        </a-entity>     
+      </a-entity>
 
       <!-- Controlli VR -->
       <a-entity id="leftHand" link-controls="hand: left"></a-entity>
       <a-entity id="rightHand" link-controls="hand: right"></a-entity>
     </a-scene>
-    
- <!-- Pulsante per disattivare/attivare l'audio -->
-  <div id="audioToggle" style="position: absolute; top: 10px; right: 10px; background: #fff; padding: 10px; border-radius: 50%; cursor: pointer;">
-    🔊
-  </div>
 
-     <script>
-    const audioToggle = document.getElementById('audioToggle');
-    const backgroundSound = document.querySelector('[sound]');
-    let isSoundOn = true;
+    <!-- Pulsante per disattivare/attivare l'audio -->
+    <div id="audioToggle" style="position: absolute; top: 10px; right: 10px; background: #fff; padding: 10px; border-radius: 50%; cursor: pointer;">
+      🔊
+    </div>
 
-    audioToggle.addEventListener('click', () => {
-      isSoundOn = !isSoundOn;
-      backgroundSound.components.sound[isSoundOn ? 'playSound' : 'pauseSound']();
-      audioToggle.textContent = isSoundOn ? '🔊' : '🔇';
-    });
+    <script>
+      const audioToggle = document.getElementById('audioToggle');
+      const backgroundSound = document.querySelector('#backgroundSound');
+      let isSoundOn = true;
+
+      audioToggle.addEventListener('click', () => {
+        isSoundOn = !isSoundOn;
+        if (isSoundOn) {
+          backgroundSound.components.sound.playSound(); // Riattiva l'audio
+          audioToggle.textContent = '🔊';
+        } else {
+          backgroundSound.components.sound.pauseSound(); // Disattiva l'audio
+          audioToggle.textContent = '🔇';
+        }
+      });
     </script>
   </body>
 </html>
