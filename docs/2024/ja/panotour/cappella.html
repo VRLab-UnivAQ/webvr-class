@@ -11,7 +11,7 @@
       <!-- Componenti della pagina -->
       <a-assets>
         <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
-        <img id="chiesa2" crossOrigin="anonymous" src="foto/chiesa_2b.jpeg"> <!-- Nuova immagine -->
+        <img id="chiesa1" crossOrigin="anonymous" src="foto/chiesa_1.jpeg"> <!-- Nuova immagine -->
         <img id="vetratapreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
         <audio id="background-music" src="audio/chiesa.mp3" preload="auto"></audio> <!-- Assicurati di avere il file audio nella cartella corretta -->
         <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
@@ -27,12 +27,12 @@
       <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link>
 
       <!-- Link per "camminare" in avanti e cambiare visuale -->
-      <a-link href="#"
+      <a-link href="#chiesa1"
               title="Avanti"
-              image="#chiesa2"  <!-- Immagine preview del secondo panorama -->
+              image="#chiesa1"  <!-- Immagine preview del secondo panorama -->
               position="0 0 -5"
               rotation="0 0 0"
-              onclick="document.querySelector('a-sky').setAttribute('src', '#chiesa2');"></a-link> <!-- Cambia l'immagine 360 -->
+              onclick="document.querySelector('a-sky').setAttribute('src', '#chiesa1');"></a-link> <!-- Cambia l'immagine 360 -->
       
       <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
