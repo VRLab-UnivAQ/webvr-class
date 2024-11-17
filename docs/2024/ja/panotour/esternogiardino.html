@@ -30,14 +30,15 @@
     
     <!-- Immagine equirettangolare -->
     <a-sky src="#sky" rotation="0 80 0"></a-sky>
-    
-    <!-- Link ad altra stanza - Torna all'ingresso -->
-    <a-link href="index.html"
-            title="Torna all'ingresso-Villa Ventilj"
-            position="7 0 2"
-            rotation="0 90 0"
-            image="#home">
-    </a-link>
+  <!-- Link ad altra stanza - Torna all'ingresso -->
+<a-link href="index.html"
+        title="Torna all'ingresso-Villa Ventilj"
+        position="7 0 2"
+        rotation="0 90 0"
+        image="#home"
+        geometry="primitive: circle; radius: 1.5"
+        material="shader: flat; src: #home">
+</a-link>
     
     <!-- Link ad altra stanza - Esplora il giardino -->
     <a-link href="giardino1.html"
