@@ -24,9 +24,11 @@
       <a-assets>
         <img id="villapreview" crossOrigin="anonymous" src="foto/esternovilla.jpeg">
         <img id="sky" crossOrigin="anonymous" src="foto/esterno_portoneaperto.jpeg">
-        <img id="vpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
-       <img id="home" crossOrigin="anonymous" src="icons/home.jpg">  
+        <img id="info-circle" crossOrigin="anonymous" src="icons/immagini.jpg">
+        <img id="home" crossOrigin="anonymous" src="icons/home.jpg">  
         <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
+        <img id="panoramica1" crossOrigin="anonymous" src="foto/panoramica1.png">
+     
       </a-assets>
       
       <!-- Immagine equirettangolare -->
@@ -50,8 +52,66 @@
               position="3 0 8"
               rotation="0 25 0">
               </a-link>
-      
+
+       <!-- Cerchio cliccabile con il logo picture per foto scorrevoli-->
+      <a-entity geometry="primitive: circle; radius: 1.5; theta-length: 360"
+                material="color: red; opacity: 0.6"
+                position="0 2 -5"
+                class="clickable"
+                id="info-circle">
+        <a-image src="#info-circle" position="0 0 0.1" width="1" height="1"></a-image>
+   
      </a-entity>
+
+       <!-- Pop-up con il carosello di immagini (inizialmente invisibile) -->
+      <a-entity id="carousel" position="0 3 -5" visible="false">
+        <a-plane position="0 0 0" width="3" height="2" color="#fff"></a-plane>
+        <a-image id="carousel-image" src="#panoramica1" position="0 0 0.1" width="3" height="2"></a-image>
+        <a-entity id="next" geometry="primitive: ring; radius-inner: 0.2; radius-outer: 0.3" 
+                  material="color: blue" position="1.5 0 -0.5" scale="0.5 0.5 0.5"
+                  class="clickable"></a-entity>
+        <a-entity id="prev" geometry="primitive: ring; radius-inner: 0.2; radius-outer: 0.3" 
+                  material="color: blue" position="-1.5 0 -0.5" scale="0.5 0.5 0.5"
+                  class="clickable"></a-entity>
+      </a-entity> 
+       
+      <!-- Controlli VR -->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
+
+    <script>
+      // Variabili per il carosello
+      const carousel = document.querySelector('#carousel');
+      const carouselImage = document.querySelector('#carousel-image');
+      const nextButton = document.querySelector('#next');
+      const prevButton = document.querySelector('#prev');
+      const images = ['#panoramica1', '#panoramica2', '#panoramica3']; // Aggiungi altre immagini se necessario
+      let currentImageIndex = 0;
+
+      // Funzione per aggiornare l'immagine del carosello
+      function updateCarouselImage() {
+        carouselImage.setAttribute('src', images[currentImageIndex]);
+      }
+
+      // Gestione clic sul cerchio informativo
+      document.querySelector('#info-circle').addEventListener('click', function () {
+        carousel.setAttribute('visible', true); // Mostra il carosello
+      });
+
+      // Gestione del clic sul pulsante "next" (avanti)
+      nextButton.addEventListener('click', function () {
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Avanza all'immagine successiva
+        updateCarouselImage();
+      });
+
+      // Gestione del clic sul pulsante "prev" (indietro)
+      prevButton.addEventListener('click', function () {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // Torna all'immagine precedente
+        updateCarouselImage();
+      });
+    </script>
+
      
   <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
