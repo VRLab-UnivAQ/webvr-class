@@ -26,13 +26,6 @@
 
       <!-- Link per tornare alla pagina iniziale -->
       <a-link href="index.html" title="Torna all'ingresso" position="10 0 -6" rotation="0 -50 0" image="#vetratapreview"></a-link>
-
-     <!-- Pulsante per cambiare visuale -->
-      <a-box color="#000000" depth="0.5" height="0.5" width="0.5"
-             position="0 0.5 -4"
-             onclick="#chiesa1">>
-        <a-text value="Cambia angolazione" align="center" position="0 0.7 0" color="white"></a-text>
-      </a-box>
       
       <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
@@ -48,18 +41,7 @@
     </a-scene>
     <script>
       
-  let currentScene = 1; // Stato per tenere traccia della scena corrente
-
-  function changeScene() {
-    const sky = document.querySelector('#sky');
-    if (currentScene === 1) {
-      sky.setAttribute('src', '#chiesa');
-      currentScene = 2; // Aggiorna stato alla scena 2
-    } else {
-      sky.setAttribute('src', '#chiesa1');
-      currentScene = 1; // Torna alla scena 1
-    }
-  }
+ 
 
     <!-- Pulsante per disattivare/attivare l'audio -->
     <div id="audioToggle" style="position: absolute; top: 10px; right: 10px; background: #fff; padding: 10px; border-radius: 50%; cursor: pointer;">
