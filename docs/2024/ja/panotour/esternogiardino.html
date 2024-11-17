@@ -14,7 +14,7 @@
     </head>
   <body>
     <a-scene
-      raycaster="far: 100; objects: [link];"
+      raycaster="far: 100; objects: [link, .arrow];"
       cursor="rayOrigin: mouse"
       camera-position
       environment>
@@ -47,6 +47,28 @@
               position="3 0 8"
               rotation="0 25 0">
               </a-link>
+      
+      <!-- Freccia cliccabile verso una nuova scena -->
+  <a-entity class="arrow"
+            geometry="primitive: cone; radiusBottom: 0.3; radiusTop: 0; height: 0.7"
+            material="color: red"
+            position="5 0 -5"
+            rotation="0 -30 0"
+            event-set__mouseenter="material.color: blue"
+            event-set__mouseleave="material.color: red"
+            onclick="window.location.href='giardino2.html'">
+  </a-entity>
+
+  <!-- Freccia cliccabile verso un altro punto del giardino -->
+  <a-entity class="arrow"
+            geometry="primitive: cone; radiusBottom: 0.3; radiusTop: 0; height: 0.7"
+            material="color: red"
+            position="-4 0 -6"
+            rotation="0 45 0"
+            event-set__mouseenter="material.color: blue"
+            event-set__mouseleave="material.color: red"
+            onclick="window.location.href='giardino3.html'">
+  </a-entity>
      
   <!-- Cilindro per coprire il treppiedi con testo -->
       <a-entity position="10 -130 12" rotation="0 0 0">
