@@ -35,17 +35,12 @@
       <a-sky src="#sky" rotation="0 80 0"></a-sky>
       
 <!-- Link ad altra stanza - Torna all'ingresso -->
-<a-entity href="index.html"
+<a-link href="index.html"
           title="Torna all'ingresso-Villa Ventilj"
           position="7 0 2"
           rotation="0 90 0"
-          class="clickable">
-  <!-- Cerchio che contiene l'immagine -->
-  <a-circle radius="1.5" color="#FFFFFF"></a-circle>
-  <!-- Immagine dentro il cerchio -->
-  <a-image src="#home" width="3" height="3" position="0 0 0.01"></a-image>
-</a-entity>
-            
+          image="#home" 
+</a-link>
        
       <!-- Link ad altra stanza - Esplora il giardino-->
       <a-link href="giardino1.html"
