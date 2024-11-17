@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Giardino Villa Ventilj</title>
+    <meta name="description" content="Pasquale Ventilj - Mosciano Sant'Angelo">
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="js/components/aframe-tooltip-component.js"></script>
+    <script src="js/components/camera-position.js"></script>
+    <script src="js/components/link-controls.js"></script>
+    <!-- Guida per i controlli dei portali da web browser: https://aframe.io/docs/1.5.0/components/link.html#controls -->
+    <!-- https://github.com/aframevr/aframe/tree/0b7aa6a0575c03963636b02ab24a9fc2658a747c/examples/showcase/link-traversal -->
+    </head>
+  <body>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      camera-position
+      environment>
+  </head>
+  
+      <!-- Componenti della pagina -->
+      <a-assets>
+        <img id="villapreview" crossOrigin="anonymous" src="foto/vill.jpeg">
+        <img id="sky" crossOrigin="anonymous" src="foto/esterno_portoneaperto.jpeg">
+        <img id="vpreview" crossOrigin="anonymous" src="foto/vetratapreview.jpg">
+       <img id="museopreview" crossOrigin="anonymous" src="foto/museopreview.jpg">  
+        <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
+      </a-assets>
+      
+      <!-- Immagine equirettangolare -->
+      <a-sky src="#o"
+             rotation="0 0 0"></a-sky>
+      
+      <!-- Link ad altra stanza - Torna all'ingresso -->
+      <a-link href="index.html"
+              title="Torna all'ingresso-Villa Ventilj"
+              image="#hallpreview"
+              position="-6 0 -4"
+              rotation="0 90 0">
+              </a-link>
+       
+      <!-- Link ad altra stanza - Sali al piano nobile-Museo -->
+      <a-link href="giardino1.html"
+              title="Esplora il giardino"
+              image="#villapreview"
+              position="6 0 8"
+              rotation="0 65 0">
+              </a-link>
+     
+  <!-- Cilindro per coprire il treppiedi con testo -->
+      <a-entity position="10 -130 12" rotation="0 0 0">
+        <a-cylinder radius="50" height="0.5" color="#ffffff"></a-cylinder>
+        <a-entity position="0 1 0">
+       <a-image src="#logo" position="0 0 7" width="70" height="70" rotation="90 115 0" scale="-1 1 1"></a-image>
+      </a-entity>      
+            
+      <!-- Controlli VR vedi: js/components/link-controls.js-->
+      <a-entity id="leftHand" link-controls="hand: left"></a-entity>
+      <a-entity id="rightHand" link-controls="hand: right"></a-entity>
+    </a-scene>
 
+  </body>
+</html>
