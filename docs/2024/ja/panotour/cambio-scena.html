@@ -11,13 +11,13 @@
       
       <!-- Asset per le immagini e i media -->
       <a-assets>
-        <img id="scene1" crossOrigin="anonymous" src="foto/chiesa_1.jpeg">
-        <img id="scene2" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
+        <img id="chiesa1" crossOrigin="anonymous" src="foto/chiesa_1.jpeg">
+        <img id="chiesa" crossOrigin="anonymous" src="foto/chiesa_2.jpeg">
         <img id="logo" crossOrigin="anonymous" src="logo/villa_ventilj_logo.png">
       </a-assets>
 
       <!-- Immagine equirettangolare iniziale -->
-      <a-sky id="sky" src="#scene1" rotation="0 0 0"></a-sky>
+      <a-sky id="sky" src="#chiesa1" rotation="0 0 0"></a-sky>
 
       <!-- Pulsante per cambiare visuale -->
       <a-box color="#000000" depth="0.5" height="0.5" width="0.5"
@@ -26,7 +26,7 @@
              material="color: #000000"
              event-set__mouseenter="color: #444444"
              event-set__mouseleave="color: #000000"
-             onclick="changeScene();">
+             onclick="#chiesa">
         <a-text value="Cambia Scena" align="center" position="0 0.7 0" color="white"></a-text>
       </a-box>
 
