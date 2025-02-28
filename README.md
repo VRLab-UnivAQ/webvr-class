@@ -9,7 +9,7 @@ MarkDown [syntax](https://help.github.com/en/articles/basic-writing-and-formatti
 
 WebVR samples demos from XXXXXX student at:
 
-    https://vrlab-univaq.github.io/webvr-class/2024/index_XXXXXXX.html
+    https://vrlab-univaq.github.io/webvr-class/2025
 
 My basic example at:
 
