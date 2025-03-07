@@ -5,10 +5,30 @@
     <title>360&deg; Image</title>
     <meta name="description" content="360&deg; Image - A-Frame">
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualizzazione Mesh 3D in formato GLB</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
       <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
+	<a-scene>
+      <!-- Caricamento del file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="my-model" src="house_white_bricks.glb"></a-asset-item>
+      </a-assets>
+<!-- Posizionamento e visualizzazione del modello 3D -->
+      <a-entity
+        gltf-model="#my-model"
+        position="0 1.5 -3"
+        scale="2 2 2"
+        rotation="0 180 0"
+      ></a-entity>
+ 
+      <!-- Aggiungere una luce per l'illuminazione -->
+      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+      <a-light type="directional" position="2 4 -3" intensity="1" target="#my-model"></a-light>
 
       <a-text font="kelsonsans" value="da Holger Vaga" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
