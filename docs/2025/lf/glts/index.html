@@ -9,7 +9,18 @@
   <body>
     <a-scene>
       <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
-
+       <a-assets>
+        <a-asset-item id="house" src="scene.gltf"></a-asset-item>
+      </a-assets>
+      
+      <!-- Posizionamento e visualizzazione del modello 3D -->
+      <a-entity
+        gltf-model="#my-model"
+        position="0 1.5 -3"
+        scale="2 2 2"
+        rotation="0 180 0"
+      ></a-entity>
+      
       <a-text font="simon inns" value="Primo esercizio" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
     </a-scene>
