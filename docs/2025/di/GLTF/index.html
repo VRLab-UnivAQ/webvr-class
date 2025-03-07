@@ -11,20 +11,21 @@
 
        <!-- Caricamento del file GLB come asset -->
       <a-assets>
-        <a-asset-item id="sedia" src="GLTF/antique_white_armchair.glb"></a-asset-item>
+        <a-asset-item id="casa_rotta" src="GLTF/ruined_house_low_poly.glb"></a-asset-item>
       </a-assets>
 
        <!-- Posizionamento e visualizzazione del modello 3D -->
       <a-entity
-        gltf-model="#sedia"
+        gltf-model="#casa_rotta"
         position="0 1.5 -3"
         scale="2 2 2"
         rotation="0 180 0"
       ></a-entity>
-       
-      <a-sky src="Skyrim.jpg" rotation="0 -130 0"></a-sky>
-      
+
       <a-plane position="0 0 0" rotion="0 0 0" scale="10 1 10"></a-plane>
+       
+      <a-sky src="montagne360.jpg" rotation="0 -130 0"></a-sky>
+            
     </a-scene>
   </body>
 </html>
