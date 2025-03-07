@@ -9,8 +9,6 @@
   <body>
     <a-scene>
       <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
-	</a-scene>
-	<a-scene>
       <!-- Caricamento del file GLB come asset -->
       <a-assets>
         <a-asset-item id="my-model" src="cabin.glb"></a-asset-item>
@@ -28,7 +26,7 @@
       <a-light type="directional" position="2 4 -3" intensity="1" target="#my-model"></a-light>
 
 <!-- Aggiungere una camera -->
-      <a-camera position="0 1.6 0"></a-camera>
+      <a-camera position="0 1.6 0" rotation="0 15 0"></a-camera>
 	
 	<a-plane
         position="-2.5 1.5 -1"
