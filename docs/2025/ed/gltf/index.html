@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <title>Test Mesh 3D</title>
+    <meta name="description" content="360&deg; Image - A-Frame">
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+
+        <!-- Camera inizialmente ruotata di 90 gradi a destra -->
+        <a-camera position="-9.5 1 -0.5"></a-camera>
+
+        <!-- Player con mani VR -->
+        <a-entity id="player">
+            <a-entity id="teleHand" hand-controls="hand: left"></a-entity>
+            <a-entity id="blockHand" hand-controls="hand: right"></a-entity>
+        </a-entity>
+
+        <!-- Caricamento del file GLB come asset -->
+        <a-assets>
+            <a-asset-item id="house" src="wooden_house_building.glb"></a-asset-item>
+            <img id="grassTexture" src="grassTexture.jpg">
+        </a-assets>
+
+        <!-- Posizionamento e visualizzazione del modello 3D -->
+        <a-entity gltf-model="#house" position="-9.5 0.0 -10" scale="0.8 0.8 0.8" rotation="0 90 0"></a-entity>
+
+        <!-- repeat ripete la risorsa 5 volte su x e su y-->
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="100" height="100" src="#grassTexture"
+            repeat="10 10a"></a-plane>
+        <a-text font="kelsonsans" value="Panorama by Simon Waldherr" width="6" position="-11.5 3.0 -4.5"
+            rotation="-0.11 0 0" color="#f2e00d"></a-text>
+        <a-text font="kelsonsans" value="Wooden House Building by Rescue3D Assets" width="6" position="-12.5 2.5 -4.5"
+            rotation="-0.11 0 0" color="#f2e00d"></a-text>
+
+        <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
+    </a-scene>
+</body>
+
+</html>
