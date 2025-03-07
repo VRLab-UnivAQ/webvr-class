@@ -15,26 +15,26 @@
       <!-- Posizionamento e visualizzazione del modello 3D -->
       <a-entity
         gltf-model="#my-model"
-        position="0 0 0"
-        scale="0.5 0.5 0.5"
-        rotation="0 0 0"
+        position="-6 0 40"
+        scale="1 1 1"
+        rotation="0 180 0"
       ></a-entity>
 
       <!-- Aggiungere una camera -->
-      <a-camera position="0 5 4" rotation="0 0 0"></a-camera>
+      <a-camera position="0 3 -1.5" rotation="0 180 0"></a-camera>
 
 	<!-- Aggiunta di un piano -->
 	<a-plane
         position="0 0 0"
-        rotation="0 90 0"
+        rotation="-90 0 0"
         width="50"
         height="50"
         color="#7BC8A4"
       ></a-plane>
 	<!-- Agiiungo citazioni -->	
-      <a-text font="kelsonsans" value="panorama di Holger Vaga" width="6" position="0 2 1.5"
-              rotation="0 15 0"></a-text>
-      <a-text font="kelsonsans" value="modello di dima051983" width="6" position="0 2 2.5"
+      <a-text font="kelsonsans" value="panorama di Holger Vaga" width="6" position="1.5 2 3"
+              rotation="0 180 0"></a-text>
+      <a-text font="kelsonsans" value="modello di dima051983" width="6" position="1.5 3 3"
               rotation="0 15 0"></a-text>
 	<a-sky src="panorama.jpg" rotation="0 0 0"></a-sky>
     </a-scene>
