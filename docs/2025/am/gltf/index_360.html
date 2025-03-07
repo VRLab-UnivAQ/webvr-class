@@ -2,44 +2,41 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualizzazione Mesh 3D in formato GLB</title>
+    <title>Test Mesh 3D</title>
+    <meta name="description" content="360&deg; Image - A-Frame">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
       <!-- Caricamento del file GLB come asset -->
       <a-assets>
         <a-asset-item id="my-model" src="cabin.glb"></a-asset-item>
       </a-assets>
-<!-- Posizionamento e visualizzazione del modello 3D -->
+      <!-- Posizionamento e visualizzazione del modello 3D -->
       <a-entity
         gltf-model="#my-model"
-        position="-2.5 1.5 -1"
-        scale="0.1 0.1 0.1"
-        rotation="0 180 0"
+        position="0 0 0"
+        scale="0.5 0.5 0.5"
+        rotation="0 0 0"
       ></a-entity>
- 
-      <!-- Aggiungere una luce per l'illuminazione -->
-      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
-      <a-light type="directional" position="2 4 -3" intensity="1" target="#my-model"></a-light>
 
-<!-- Aggiungere una camera -->
-      <a-camera position="0 1.6 0" rotation="0 15 0"></a-camera>
-	
+      <!-- Aggiungere una camera -->
+      <a-camera position="0 5 4" rotation="0 0 0"></a-camera>
+
+	<!-- Aggiunta di un piano -->
 	<a-plane
-        position="-2.5 1.5 -1"
+        position="0 0 0"
         rotation="0 90 0"
-        width="3"
-        height="3"
+        width="50"
+        height="50"
         color="#7BC8A4"
       ></a-plane>
-		
-      <a-text font="kelsonsans" value="da Holger Vaga" width="6" position="-2.5 0.25 -1.5"
+	<!-- Agiiungo citazioni -->	
+      <a-text font="kelsonsans" value="panorama di Holger Vaga" width="6" position="0 2 1.5"
               rotation="0 15 0"></a-text>
-      <a-text font="kelsonsans" value="modello di dima051983" width="6" position="-2.5 0.25 -2.5"
+      <a-text font="kelsonsans" value="modello di dima051983" width="6" position="0 2 2.5"
               rotation="0 15 0"></a-text>
+	<a-sky src="panorama.jpg" rotation="0 0 0"></a-sky>
     </a-scene>
   </body>
 </html>
