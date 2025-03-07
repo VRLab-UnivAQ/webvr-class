@@ -2,27 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image</title>
+    <title>Test Mesh 3D</title>
     <meta name="description" content="360&deg; Image - A-Frame">
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
-       <a-assets>
-        <a-asset-item id="house" src="scene.gltf"></a-asset-item>
+      <!-- Caricamento del file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="house" src="scene.glb"></a-asset-item>
       </a-assets>
-      
+
       <!-- Posizionamento e visualizzazione del modello 3D -->
       <a-entity
-        gltf-model="#my-model"
-        position="0 1.5 -3"
-        scale="2 2 2"
-        rotation="0 180 0"
+        gltf-model="#house"
+        position="0 0.0 0"
+        scale="0.1 0.1 0.1"
+        rotation="0 0 0"
       ></a-entity>
-      
-      <a-text font="simon inns" value="Primo esercizio" width="6" position="-2.5 0.25 -1.5"
+
+      <a-plane
+        position="0 0 -4"
+        rotation="0 0 0"
+        width="20"
+        height="20"
+        color="#7BC8A4"
+      ></a-plane>
+      <a-text font="simon inns" value="Panorama di Simon Inns" width="6" position="-2.5 0.25 -1.5"
               rotation="0 15 0"></a-text>
+      <a-text font="" value="Fantasy House by illustros" width="6" position="-2.5 5.0 -1.5"
+              rotation="0 15 0"></a-text>
+      
+      <a-sky src="panorama.jpg" rotation="0 -130 0"></a-sky>
     </a-scene>
   </body>
 </html>
