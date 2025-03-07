@@ -22,6 +22,14 @@
         rotation="0 0 0"
       ></a-entity>
 
+      <!-- Aggiungere una luce per l'illuminazione -->
+      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+      <a-light type="directional" position="2 4 -3" intensity="1" target="#my-model"></a-light>
+ 
+      <!-- Aggiungere una camera -->
+      <a-camera position="0 1.6 0"></a-camera>
+
+      <!-- Aggiungere un piano -->
       <a-plane
         position="0 0 -4"
         rotation="0 0 0"
