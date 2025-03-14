@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualizzazione Mesh 3D in formato GLB</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Caricamento del file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="apartment" src="apartment.glb"></a-asset-item>
+      </a-assets>
+ 
+      <!-- Posizionamento e visualizzazione del modello 3D -->
+      <a-entity
+        gltf-model="#apartment"
+        position="0 0.5 0"
+        scale="4 4 4"
+        rotation="0 0 0"
+      ></a-entity>
+
+      <!-- Aggiungere una camera -->
+      <a-camera position="-2 2 3"></a-camera>
+      
+      <a-sky src="parcheggio.jpg" rotation="0 -130 0"></a-sky>
+      <a-plane
+        position="0.1 0.1 0"
+        rotation="-90 0 0"
+        width="50"
+        height="50"
+        color="#808080"
+      ></a-plane>
+    </a-scene>
+  </body>
     <meta charset="utf-8">
     <title>Esempio A-Frame WebVR con Teleport</title>
     <!-- Inclusione della libreria A-Frame -->
