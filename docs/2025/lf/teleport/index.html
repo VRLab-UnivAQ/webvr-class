@@ -25,9 +25,16 @@
                         raycaster="objects: #ground; showLine: true"
                         line="color: blue; opacity: 0.8">
                 </a-entity>
+                <!-- Avatar GLB -->
+                <a-entity 
+                    gltf-model="avatar/Avatar.glb"
+                    position="0 -1 0" 
+                    scale="1 1 1"
+                >       
+                </a-entity>
             </a-entity>
             
-            <!-- Piano -->
+            <!-- Piano di teleport -->
             <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side="double"></a-plane>
 
         </a-scene>       
