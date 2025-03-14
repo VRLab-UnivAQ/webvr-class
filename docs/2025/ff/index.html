@@ -2,16 +2,43 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image</title>
-    <meta name="description" content="360&deg; Image - A-Frame">
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <title>Esempio A-Frame WebVR con Teleport</title>
+    <!-- Inclusione della libreria A-Frame -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!-- Inclusione del componente teleport-controls (da utilizzare per il Meta Quest) -->
+    <script src="https://cdn.jsdelivr.net/gh/oscarmarinmiro/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sky src="nightsky.jpg" rotation="0 -130 0"></a-sky>
-
-      <a-text font="kelsonsans" value="Puy de Sancy, France" width="6" position="-2.5 0.25 -1.5"
-              rotation="0 15 0"></a-text>
+      <!-- Entità rig per la testa e i controller -->
+      <a-entity id="rig" position="0 1.6 0">
+        <a-camera></a-camera>
+        <!-- Controller sinistro con teleport abilitato -->
+        <a-entity 
+          hand-controls="hand: left" 
+          teleport-controls="button: trigger; collisionEntities: #floor">
+        </a-entity>
+        <!-- Controller destro con teleport abilitato -->
+        <a-entity 
+          hand-controls="hand: right" 
+          teleport-controls="button: trigger; collisionEntities: #floor">
+        </a-entity>
+      </a-entity>
+      
+      <!-- Piano che funge da suolo per il teleport -->
+      <a-plane 
+        id="floor"
+        position="0 0 0" 
+        rotation="-90 0 0" 
+        width="20" 
+        height="20" 
+        color="#7BC8A4">
+      </a-plane>
+      
+      <!-- Cubi di varie dimensioni -->
+      <a-box position="-1 0.5 -3" depth="1" height="1" width="1" color="#4CC3D9"></a-box>
+      <a-box position="1 1 -5" depth="1.5" height="1.5" width="1.5" color="#EF2D5E"></a-box>
+      <a-box position="3 0.25 -2" depth="0.5" height="0.5" width="0.5" color="#FFC65D"></a-box>
     </a-scene>
   </body>
 </html>
