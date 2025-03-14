@@ -6,27 +6,30 @@
     </head>
     <body>
         <a-scene>
-                       
             <a-entity id="rig" position="0 1.7 45">
-                <!-- Placing the starting camera. -->
+                <!-- Placing the starting camera -->
                 <a-camera></a-camera>
-                <!-- Mano sinistra -->
+
+                <!-- Mano sinistra con raycaster e teleport con pointup -->
                 <a-entity id="leftHand"
                         oculus-touch-controls="hand: left"
-                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; hitCylinderColor: red">
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; button: pointup"
+                        raycaster="objects: #ground; showLine: true"
+                        line="color: red; opacity: 0.8">
                 </a-entity>
 
-                <!-- Mano destra -->
+                <!-- Mano destra con raycaster e teleport con pointup -->
                 <a-entity id="rightHand"
                         oculus-touch-controls="hand: right"
-                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; hitCylinderColor: blue">
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; button: pointup"
+                        raycaster="objects: #ground; showLine: true"
+                        line="color: blue; opacity: 0.8">
                 </a-entity>
-
             </a-entity>
             
-            <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side = "double"></a-plane>
-      
+            <!-- Piano -->
+            <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side="double"></a-plane>
+
         </a-scene>       
     </body>
 </html>
-
