@@ -7,8 +7,16 @@
     <body>
         <a-scene>
             <a-entity id="rig" position="0 1.7 45">
-                <!-- Placing the starting camera -->
-                <a-camera></a-camera>
+                <!-- Camera con avatar agganciato -->
+                <a-entity id="head" camera look-controls>
+                    <!-- Avatar GLB (agganciato alla camera) -->
+                    <a-entity 
+                        gltf-model="avatar/Avatar.glb"
+                        position="0 1.7 0"
+                        scale="1 1 1"
+                        animation-mixer>
+                    </a-entity>
+                </a-entity>
 
                 <!-- Mano sinistra con raycaster e teleport con pointup -->
                 <a-entity id="leftHand"
@@ -25,18 +33,10 @@
                         raycaster="objects: #ground; showLine: true"
                         line="color: blue; opacity: 0.8">
                 </a-entity>
-                <!-- Avatar GLB -->
-                <a-entity 
-                    gltf-model="avatar/Avatar.glb"
-                    position="0 -1 0" 
-                    scale="1 1 1"
-                >       
-                </a-entity>
             </a-entity>
             
             <!-- Piano di teleport -->
             <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side="double"></a-plane>
-
         </a-scene>       
     </body>
 </html>
