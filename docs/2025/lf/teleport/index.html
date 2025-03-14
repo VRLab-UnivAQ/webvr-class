@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>360&deg; Image</title>
-    <meta name="description" content="360&deg; Image - A-Frame">
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-sky src="immagine.jpg" rotation="0 -130 0"></a-sky>
-      <a-plane position = "0 0 0" rotation = "0 0 0 " scale "10 1 10"></a-plane>
-      <a-text font="kelsonsans" value="Primo esercizio" width="6" position="-2.5 0.25 -1.5"
-              rotation="0 15 0"></a-text>
-    </a-scene>
-  </body>
+    <head>
+        <title>VR Teleportation by Feula Lorenzo</title>
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+                       
+            <a-entity id="rig" position="0 1.7 45">
+                <!-- Placing the starting camera. -->
+                <a-camera></a-camera>
+                <!-- Mano sinistra -->
+                <a-entity id="leftHand"
+                        oculus-touch-controls="hand: left"
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; hitCylinderColor: red">
+                </a-entity>
+
+                <!-- Mano destra -->
+                <a-entity id="rightHand"
+                        oculus-touch-controls="hand: right"
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; hitCylinderColor: blue">
+                </a-entity>
+
+            </a-entity>
+            
+            <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side = "double"></a-plane>
+      
+        </a-scene>       
+    </body>
 </html>
+
