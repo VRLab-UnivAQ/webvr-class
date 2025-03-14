@@ -24,7 +24,15 @@
       ></a-entity>
  <!-- Entità rig per la testa e i controller -->
       <a-entity id="rig" position="0 1.6 0">
-        <a-camera></a-camera>
+        <a-camera>
+<!-- Avatar dell'utente: sostituire l'URL con quello reale fornito da readyplayer.me -->
+        <a-entity 
+          id="avatar"
+          gltf-model="url('https://models.readyplayer.me/67d3f9b2ccf2bc0d5f18c4b0.glb')"
+          position="0 -1.6 0"
+          scale="1 1 1">
+        </a-entity>
+</a-camera>
         <!-- Controller sinistro con teleport abilitato -->
         <a-entity 
           hand-controls="hand: left" 
