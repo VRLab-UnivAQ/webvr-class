@@ -11,6 +11,7 @@
       <!-- Caricamento del file GLB come asset -->
       <a-assets>
         <a-asset-item id="apartment" src="apartment.glb"></a-asset-item>
+    <a-asset-item id="avatar" src="https://models.readyplayer.me/67d3fa15fa46ad424b3eb355.glb"></a-asset-item>
       </a-assets>
  
       <!-- Posizionamento e visualizzazione del modello 3D -->
@@ -20,9 +21,17 @@
         scale="4 4 4"
         rotation="0 0 0"
       ></a-entity>
-
+      
+  <!-- Aggiungere l'avatar -->
+      <a-entity
+        gltf-model="#avatar"
+        position="0 0.5 2"
+        scale="4 4 4"
+        rotation="0 180 0"
+      ></a-entity>
+      
       <!-- Aggiungere una camera -->
-      <a-camera position="-2 2 3"></a-camera>
+      <a-camera position="-2 6.5 3"></a-camera>
       
       <a-sky src="parcheggio.jpg" rotation="0 -130 0"></a-sky>
       <a-plane

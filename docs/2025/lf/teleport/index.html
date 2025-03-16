@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>VR Teleportation by Feula Lorenzo</title>
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <a-entity id="rig" position="0 1.7 45">
+                <!-- Camera -->
+                <a-camera id="head" look-controls></a-camera>
+
+                <!-- Avatar GLB (agganciato al rig, NON alla camera) -->
+                <a-entity 
+                    gltf-model="avatar/Avatar.glb"
+                    position="0 -1.7 0"
+                    scale="1.9 1.9 1.9"
+                    rotation="0 180 0"
+                    animation-mixer>
+                </a-entity>
+
+                <!-- Braccio Sinistro -->
+                <a-entity id="leftArm"
+                          geometry="primitive: cylinder; radius: 0.05; height: 0.5"
+                          material="color: #ffcc99"
+                          position="-0.2 -0.5 0"
+                          rotation="0 0 90">
+                </a-entity>
+
+                <!-- Mano Sinistra -->
+                <a-entity id="leftHand"
+                        oculus-touch-controls="hand: left"
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; button: pointup; type: blink; curveShootingSpeed: 0; hitCylinderColor: blue"
+                        raycaster="objects: #ground; showLine: true"
+                        line="color: red; opacity: 0.8">
+                </a-entity>
+
+                <!-- Braccio Destro -->
+                <a-entity id="rightArm"
+                          geometry="primitive: cylinder; radius: 0.05; height: 0.5"
+                          material="color: #ffcc99"
+                          position="0.2 -0.5 0"
+                          rotation="0 0 -90">
+                </a-entity>
+
+                <!-- Mano Destra -->
+                <a-entity id="rightHand"
+                        oculus-touch-controls="hand: right"
+                        teleport-controls="cameraRig: #rig; collisionEntities: #ground; pointup: trigger; type: blink; curveShootingSpeed: 0; hitCylinderColor: blue"
+                        raycaster="objects: #ground; showLine: true"
+                        line="color: blue; opacity: 0.8">
+                </a-entity>
+            </a-entity>
+            
+            <!-- Piano di teleport -->
+            <a-plane id="ground" color="#292323" height="100" width="100" rotation="-90 0 0" side="double"></a-plane>
+        </a-scene>       
+    </body>
+</html>
