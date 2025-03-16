@@ -17,8 +17,16 @@
         <a-asset-item id="engi" src="tf2_engineer.glb"></a-asset-item>
       </a-assets>
 
-      <a-camera position="-6.5 1.6 0.3" rotation="-0.11 -90 0"></a-camera>
-       <!-- Posizionamento e visualizzazione del modello 3D -->
+      <!-- Posizionamento e visualizzazione dei modelli 3D -->
+      <a-camera position="0 0.660 0" rotation="0 180.000 0"></a-camera>
+
+      <a-plane
+        position="0 0 -4"
+        rotation="-90 0 0"
+        width="50"
+        height="50"
+        color="#F2F2F2"
+      ></a-plane>
 
       <a-entity 
         gltf-model="#engi"
