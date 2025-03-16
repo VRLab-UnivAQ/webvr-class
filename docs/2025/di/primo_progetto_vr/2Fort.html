@@ -17,6 +17,10 @@
         <a-asset-item id="engi" src="tf2_engineer.glb"></a-asset-item>
       </a-assets>
 
+      <a-assets>
+        <a-asset-item id="casa_rotta" src="ruined_house_low_poly.glb"></a-asset-item>
+      </a-assets>
+
       <!-- Posizionamento e visualizzazione dei modelli 3D -->
       <a-camera position="0 0.660 0" rotation="0 180.000 0"></a-camera>
 
@@ -27,6 +31,13 @@
         height="50"
         color="#F2F2F2"
       ></a-plane>
+
+      <a-entity
+        gltf-model="#casa_rotta"
+        position="0 1.5 -3"
+        scale="1 1 1"
+        rotation="0 180 0"
+      ></a-entity>
 
       <a-entity 
         gltf-model="#engi"
