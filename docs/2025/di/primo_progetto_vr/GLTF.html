@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GLTF</title>
+    <meta name="description" content="360&deg; Image - A-Frame">
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+       <!-- Caricamento del file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="torretta" src="sentry_turret_team_fortress_2.glb"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+        <a-asset-item id="engi" src="tf2_engineer.glb"></a-asset-item>
+      </a-assets>
+       <!-- Posizionamento e visualizzazione del modello 3D -->
+
+      <a-entity 
+        gltf-model="#engi"
+        position="0 1.5 -3"
+        scale="4 2 2"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#torretta"
+        position="0 1.5 -3"
+        scale="4 2 2"
+        rotation="0 180 0"
+      ></a-entity>
+             
+      <a-sky src="team_fortress_2_panoramic.jpg" rotation="0 -130 0"></a-sky>
+
+      <a-text font="kelsonsans" value="Sentry Turret by gokuoder. TF2 Engineer by Nobby76" width="6" position="-2.5 0.25 -1.5"
+      rotation="0 15 0"></a-text>
+            
+    </a-scene>
+  </body>
+</html>
