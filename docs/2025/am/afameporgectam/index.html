@@ -9,16 +9,64 @@
   </head>
   <body>
     <a-scene>
+
+<!-- Caricamento dei file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="piramide" src="assets/GLTF/piramide.glb"></a-asset-item>
+      </a-assets>
+      <a-assets>
+        <a-asset-item id="scroll" src="assets/GLTF/papyrus.glb"></a-asset-item>
+      </a-assets>
+      <a-assets>
+        <a-asset-item id="info" src="assets/GLTF/Parchment1.glb"></a-asset-item>
+      </a-assets>
+
+<!-- Posizionamento e visualizzazione dei modelli 3D -->
+      <a-entity
+        gltf-model="#piramide"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#scroll"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#scroll"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#scroll"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#info"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="#info"
+        position="0 0 0"
+        scale="1 1 1"
+        rotation="0 0 0"
+      ></a-entity>
+
+
 <a-sky src="assets/textures/panorama2.jpg" rotation="0 0 0"></a-sky>
 <!-- Piano di appoggio -->
-      	<a-plane 
-        	id="floor"
-		material="src: url(assets/textures/sabbia.jpg); repeat: 10 10;"
-        	position="0 0 0" 
-        	rotation="-90 0 0" 
-        	width="50" 
-		height="50">
-	</a-plane>
+	<a-circle 
+		material="src: url(assets/textures/sabbia.jpg); repeat: 10 10;" 
+		radius="70" 
+		rotation="-90 0 0">
+	</a-circle>
     </a-scene>
   </body>
 </html>
