@@ -5,13 +5,12 @@
     <title>Nel deserto a vedere le piramidi</title>
     <!-- Inclusione della libreria A-Frame -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-
+<!-- Inclusione del componente teleport-controls per Meta Quest -->
+    <script src="https://cdn.jsdelivr.net/gh/oscarmarinmiro/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"></script>
   </head>
   <body>
     <a-scene>
-    <a-assets>
-    	<img id="table" src="asset/textures/metal.jpg">
-    </a-assets>
+
 
 <!-- Caricamento dei file GLB come asset -->
       <a-assets>
@@ -74,6 +73,7 @@
 	<a-cylinder color="tomato" height="0.9" radius="0.15" position="119.732 3.197 -114.253" rotation="44.720 -55.453 162.056"></a-cylinder>
 	<a-sphere color="tomato" radius="0.5" position="120.000 5.000 -113.000"></a-sphere>
 	<a-text
+		color="#000000"
 		font="kelsonsans"
 		value="ci spiace la piramide e chiusa poiche inpraticabile per crolli"
 		width="0.76"
@@ -99,11 +99,11 @@
 	<a-sphere color="#CCC" radius="0.5" position="0.530 4.000 -13.240"></a-sphere>
 
 <!-- Tavolo -->
-	<a-box material="src: url(#table); repeat: 5 5;" depth="5.000" height="0.100" width="7.500" position="0 1.500 -15"></a-box>
+	<a-box material="src: url(assets/textures/metal.jpg); repeat: 5 5;" depth="5.000" height="0.100" width="7.500" position="0 1.500 -15"></a-box>
 	<a-cylinder material="src: url(assets/textures/metal.jpg);" height="1.5" radius="0.100" position="3.600 0.750 -12.600"></a-cylinder>
-	<a-cylinder material="src: url(#table);" height="1.5" radius="0.100" position="-3.600 0.760 -12.600"></a-cylinder>
-	<a-cylinder material="src: url(#table);" height="1.5" radius="0.100" position="-3.600 0.760 -17.400"></a-cylinder>
-	<a-cylinder material="src: url(#table);" height="1.5" radius="0.100" position="3.600 0.760 -17.400"></a-cylinder>
+	<a-cylinder material="src: url(assets/textures/metal.jpg);" height="1.5" radius="0.100" position="-3.600 0.760 -12.600"></a-cylinder>
+	<a-cylinder material="src: url(assets/textures/metal.jpg);" height="1.5" radius="0.100" position="-3.600 0.760 -17.400"></a-cylinder>
+	<a-cylinder material="src: url(assets/textures/metal.jpg);" height="1.5" radius="0.100" position="3.600 0.760 -17.400"></a-cylinder>
 	
     
     
@@ -125,11 +125,12 @@
 
 <!-- Agiiungo citazioni -->	
       <a-text 
+	color="#000000"
 	font="kelsonsans" 
-	value="Piramide di gb.prof.69 pergamena aperta di pizzabrian pergamene chiuse di Víctu" 
-	width="6" 
-	position="-1.5 1 -3"
-        rotation="0 0 0"
+	value=" Ringrazziamenti per: Piramide: gb.prof.69; Pergamena aperta: pizzabrian; Pergamene chiuse: Víctu" 
+	width="0.8" 
+	position="-1.000 1.570 -13.500"
+        rotation="-90.000 -15.000 0"
 	wrap-count="20"
 	align="center"
 	anchor="center">
