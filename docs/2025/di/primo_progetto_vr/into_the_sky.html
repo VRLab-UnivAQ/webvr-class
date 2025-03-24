@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GLTF</title>
+    <meta name="description" content="360&deg; Image - A-Frame">
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+       <!-- Caricamento del file GLB come asset -->
+      <a-assets>
+        <a-asset-item id="stuka" src="ju_87_b-2_war_thunder.glb"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+        <a-asset-item id="bf109" src="bf_109_e-4_war_thunder.glb"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+        <a-asset-item id="fw190" src="fw_190_d-9_ussr_war_thunder.glb"></a-asset-item>
+      </a-assets>
+
+      <a-assets>
+        <a-asset-item id="spitfire" src="supermarine_spitfire.glb"></a-asset-item>
+      </a-assets>
+      <!-- Posizionamento e visualizzazione dei modelli 3D -->
+      <a-camera 
+        position="-0.106 1 -11.192" 
+        rotation="0 -180 0"
+      ></a-camera>
+
+      <a-entity
+        gltf-model="#fw190"
+        position="0 -0.083 -11.491"
+        scale="0.5 0.5 0.5"
+        rotation="0 180 0"
+      ></a-entity>
+      
+      <a-entity
+        gltf-model="#stuka"
+        position="50 -23 -11.491"
+        scale="0.5 0.5 0.5"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-entity 
+        gltf-model="#spitfire"
+        position="0 -0.044 4.684"
+        scale="4 4 4"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#bf109"
+        position="-0.525 -0.004 4.893"
+        scale="0.009 0.009 0.009"
+        rotation="0 180 0"
+      ></a-entity>
+             
+      <a-sky src="ww2_sky.jpg" rotation="0 -130 0"></a-sky>
+
+      <a-text 
+        font="kelsonsans" value="" 
+        rotation="0 -180 0"
+        position = "0 0.5 0"
+      ></a-text>
+            
+    </a-scene>
+  </body>
+</html>
