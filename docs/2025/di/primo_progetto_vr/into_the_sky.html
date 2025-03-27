@@ -14,6 +14,7 @@
         <a-asset-item id="bf109" src="models/bf109.glb"></a-asset-item>
         <a-asset-item id="fw190" src="models/fw190.glb"></a-asset-item>
         <a-asset-item id="spitfire" src="models/supermarine_spitfire.glb"></a-asset-item>
+        <a-asset-item id="main_spitfire" src="models/main_spitfire.glb"></a-asset-item>
       </a-assets>
 
       <!-- Posizionamento e visualizzazione dei modelli 3D -->
@@ -23,20 +24,37 @@
       ></a-camera>
 
       <a-entity 
-        gltf-model="#stuka" position="6.82979 3.56405 -18.77693" scale="0.5 0.5 0.5" rotation="0 180 0">
+        gltf-model="#stuka" position="20.72643 385.1155 -10.24085" scale="0.5 0.5 0.5" rotation="53.05646478690936 132.53545125407177 -4.840920411060325">
       </a-entity>
 
       <a-entity 
-        gltf-model="#spitfire" position="0 -0.044 4.684" scale="0.02 0.02 0.02" rotation="0 180 0">
+        gltf-model="#bf109" position="9.17827 387.23275 84.87903" scale="0.5 0.5 0.5" rotation="1.2404536264582322 -170.20226966376723 -10.094943392409975">
       </a-entity>
 
+      <!-- fw a sinistra-->
       <a-entity 
-        gltf-model="#bf109" position="-7.01326 9.23251 -4.14337" scale="0.5 0.5 0.5" rotation="0 180 0">
+        gltf-model="#fw190" position="-58.41898 391.72237 -13.30369" scale="0.5 0.5 0.5" rotation="-9.622826169222176 -157.21675419492223 -62.922225061267014">
       </a-entity>
 
-    <a-entity 
-      gltf-model="#fw190" position="0 2.62352 -13.30369" scale="0.5 0.5 0.5" rotation="0 180 0">
-    </a-entity>
+      <!-- fw a destra-->
+      <a-entity 
+        gltf-model="#fw190" position="93.72054 392.7092 41.79129" scale="0.5 0.5 0.5" rotation="-54.50261026181956 172.91121411914574 13.75270595652515">
+      </a-entity>
+
+      <!-- spitfire a sinistra-->
+      <a-entity 
+        gltf-model="#spitfire" position="-155.00916 403.6785 192.74438" scale="0.02 0.02 0.02" rotation="0 180 0">
+      </a-entity>
+
+      <!-- spitfire a destra-->
+      <a-entity 
+        gltf-model="#spitfire" position="-1.29141 426.81116 209.94144" scale="0.02 0.02 0.02" rotation="37.848446030751916 173.4303138815343 -67.90523900551977">
+      </a-entity>
+
+      <!-- spitfire centarle-->
+      <a-entity 
+        gltf-model="#main_spitfire" position="-1.29141 426.81116 209.94144" scale="0.02 0.02 0.02" rotation="37.848446030751916 173.4303138815343 -67.90523900551977">
+      </a-entity>
    
   
       <a-sky src="sky.jpg" rotation="0 -130 0"></a-sky>
