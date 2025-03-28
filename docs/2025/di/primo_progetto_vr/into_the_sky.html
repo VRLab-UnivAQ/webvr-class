@@ -9,7 +9,11 @@
   <body>
     <a-scene>
        <!-- main camera -->
-       <a-camera position="0 1 0" scale="0.2 0.2 0.2" camera="active: true"></a-camera>
+      
+      <a-entity id="main_camera" rotation="0 -180 0" position="0 1 0">
+        <a-camera position="0 0 0" scale="0.2 0.2 0.2" active="true"></a-camera> 
+        <a-text font="kelsonsans" value="palle" position="-0.3 0 -3"></a-text>
+      </a-entity>
 
        <!-- Caricamento del file GLB come asset -->
       <a-assets>
@@ -22,27 +26,27 @@
 
       <!-- Posizionamento e visualizzazione dei modelli 3D -->
 
-      <a-entity 
-        gltf-model="#stuka" position="20.72643 200 -10.24085" scale="0.5 0.5 0.5" rotation="53.05646478690936 132.53545125407177 -4.840920411060325">
-        <!-- pov pilota -->
-        <a-camera 
-        position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
-        </a-camera>
-      </a-entity>
-  
-      <a-entity 
-        gltf-model="#bf109" position="-55.70208 225.01229 86.88107" scale="0.5 0.5 0.5" rotation="1.2404536264582322 138.3206061115077 -10.094943392409975">
-         <!-- pov pilota -->
-         <a-camera 
-          position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
-         </a-camera>
+      <a-entity position="20.72643 200 -10.24085" scale="0.5 0.5 0.5" rotation="53.05646478690936 132.53545125407177 -4.840920411060325">
+        <a-entity gltf-model="#stuka"></a-entity>
+          <!-- pov pilota -->
+          <a-entity id="Stukacam_wrapper" rotation="4.812845479098836 -180 0" position="0.02035 0.8262 -0.6558">
+            <a-camera active="false" position="0 0 0"></a-camera>
+          </a-entity>
+         <!-- pov mitragliere -->
+         <a-entity id="StukaGunnercam_wrapper" rotation="-3.82048257 0 -2.87452925" position="0.00381 0.85914 -1.73528">
+          <a-camera active="false" position="0 0 0"></a-camera>
+        </a-entity>
       </a-entity>
 
-      <a-camera>
-        <a-entity
-          gltf-model="#bf109" position="-55.70208 225.01229 86.88107" scale="0.5 0.5 0.5" rotation="1.2404536264582322 138.3206061115077 -10.094943392409975">
+      <a-entity position="-55.70208 225.01229 86.88107" scale="0.5 0.5 0.5" rotation="1.2404536264582322 138.3206061115077 -10.094943392409975">
+        <a-entity 
+          gltf-model="#bf109">
+            <!-- pov pilota -->
+            <a-entity id="bf109cam_wrapper" rotation="4.812845479098836 -180 0" position="-0.13 -0.09 -1.73">
+              <a-camera active = "false" position="-0.08699 0.65629 -0.76983"></a-camera>
+            </a-entity>      
         </a-entity>
-      </a-camera>
+      </a-entity>
 
       <!-- fw a sinistra-->
       <a-entity 
@@ -51,7 +55,7 @@
 
       <!-- fw a destra-->
       <a-entity 
-        gltf-model="#fw190" position="93.72054 223.7092 41.79129" scale="0.5 0.5 0.5" rotation="-54.50261026181956 172.91121411914574 13.75270595652515">
+        gltf-model="models/fw190.glb" position="93.72054 243.24035 41.79129" scale="0.5 0.5 0.5" rotation="-54.50261026181956 172.91121411914574 13.75270595652515">
       </a-entity>
 
       <!-- spitfire a sinistra-->
@@ -66,20 +70,14 @@
       <!-- spitfire centrale-->
       <a-entity 
         gltf-model="#main_spitfire" position="-79.06214 108.00649 104.09701" rotation="8.76224356093568 -46.33566985002481 20.087327339491537">
-           <!-- pov pilota -->
-           <a-camera 
-           position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
-           </a-camera>
+        <!-- pov pilota -->
+        <a-entity id="MainSpitcam_wrapper" position="105.33733 70.7547 20.27093">
+          <a-camera active="false" position="0 0 0"></a-camera>
+        </a-entity> 
       </a-entity>
    
   
       <a-sky src="sky.jpg" rotation="0 -130 0"></a-sky>
-
-      <a-text 
-        font="kelsonsans" value="" 
-        rotation="0 -180 0"
-        position = "0 0.5 0"
-      ></a-text>
             
     </a-scene>
   </body>
