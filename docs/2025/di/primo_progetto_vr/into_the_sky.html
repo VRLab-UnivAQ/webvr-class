@@ -8,6 +8,9 @@
   </head>
   <body>
     <a-scene>
+       <!-- main camera -->
+      <a-camera position="0 0 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0"></a-camera>
+
        <!-- Caricamento del file GLB come asset -->
       <a-assets>
         <a-asset-item id="stuka" src="models/stuka.glb"></a-asset-item>
@@ -19,16 +22,21 @@
 
       <!-- Posizionamento e visualizzazione dei modelli 3D -->
 
-      <a-camera 
-        position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
-      </a-camera>
 
       <a-entity 
         gltf-model="#stuka" position="20.72643 200 -10.24085" scale="0.5 0.5 0.5" rotation="53.05646478690936 132.53545125407177 -4.840920411060325">
+        <!-- pov pilota -->
+        <a-camera 
+        position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
+        </a-camera>
       </a-entity>
   
       <a-entity 
         gltf-model="#bf109" position="-55.70208 225.01229 86.88107" scale="0.5 0.5 0.5" rotation="1.2404536264582322 138.3206061115077 -10.094943392409975">
+         <!-- pov pilota -->
+         <a-camera 
+         position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
+         </a-camera>
       </a-entity>
 
       <!-- fw a sinistra-->
@@ -53,6 +61,10 @@
       <!-- spitfire centrale-->
       <a-entity 
         gltf-model="#main_spitfire" position="-79.06214 108.00649 104.09701" rotation="8.76224356093568 -46.33566985002481 20.087327339491537">
+           <!-- pov pilota -->
+           <a-camera 
+           position="0 271.20914 0" scale="0.2 0.2 0.2" rotation="-23.376678041337577 133.26998314742963 0">
+           </a-camera>
       </a-entity>
    
   
