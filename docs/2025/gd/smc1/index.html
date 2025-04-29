@@ -16,7 +16,11 @@
         height="50"
         color="#7BC8A4"
       ></a-plane>
-      
+      <a-entity id="player">
+        <a-entity id="teleHand" hand-controls="hand: left"></a-entity>
+        <a-entity id="blockHand" hand-controls="hand: right"></a-entity>
+              <a-camera position="-6.5 1.6 0.3" rotation="-0.11 -270 0"></a-camera>
+      </a-entity>
       <!-- Caricamento della tua mesh GLB -->
       <a-gltf-model 
         src="#smc" 
