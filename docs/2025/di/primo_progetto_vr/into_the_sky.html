@@ -16,7 +16,7 @@
         <a-plane width="5" height="5" rotation="0 180 0" material="color: #959797" geometry="height: 4" position="0 2 2.5"></a-plane>
         
         <a-entity id="main_camera" rotation="0 -180 0" position="0 1 0">
-            <a-camera position="0 0 0" scale="0.2 0.2 0.2" active="true"></a-camera> 
+            <a-camera position="0 0 0" scale="0.2 0.2 0.2" active="false"></a-camera> 
         </a-entity>
       </a-entity>
 
@@ -35,7 +35,7 @@
         <a-entity gltf-model="#stuka"></a-entity>
           <!-- pov pilota -->
           <a-entity id="Stukacam_wrapper" rotation="4.812845479098836 -180 0" position="0.02035 0.8262 -0.6558">
-            <a-camera id="stuka_pilot" active="false" position="0 0 0"></a-camera>
+            <a-camera id="stuka_pilot" active="active" position="0 0 0"></a-camera>
           </a-entity>
          <!-- pov mitragliere -->
          <a-entity id="StukaGunnercam_wrapper" rotation="-3.82048257 0 -2.87452925" position="0.00381 0.85914 -1.73528">
