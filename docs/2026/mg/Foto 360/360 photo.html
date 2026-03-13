@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Esempio Sky 360° A-Frame</title>
+  <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+
+     <!-- Elemento di testo con didascalia e autore -->
+    <a-text value="Sky 360° Spiaggia Panoramica&#10;Autore: Matteo Ming Kun Gao" 
+            position="-2 1.5 -2" 
+            align="left" 
+            color="white" 
+            scale="1.2 1.2 1.2" 
+            shader="flat"></a-text>
+
+    <!-- Sfondo sky 360° dall'esempio A-Frame -->
+    <a-sky src="https://live.staticflickr.com/4704/40423158882_c5e7e6d42f_o.jpg?s=eyJpIjo0MDQyMzE1ODg4MiwiZSI6MTc3MzM5ODM2NSwicyI6ImIzNTJjZTQ4MTlkODI0ZGUzZGIyNTE4MDAyZTUyZTIxYzA2ODEzMTYiLCJ2IjoxfQ"></a-sky>
+    
+    <!-- Camera con controlli per muovere la vista -->
+    <a-entity id="rig" movement-controls="fly: true; speed: 0.1">
+      <a-camera position="0 1.6 0"></a-camera>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
