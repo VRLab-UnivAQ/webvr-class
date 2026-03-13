@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Frame 360° Panorama</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+</head>
+<body>
+
+    <a-scene>
+        <!-- Sky con immagine 360°-->
+        <a-sky src="img/puydesancy.jpg" rotation="0 0 0"></a-sky>
+
+        <!-- Fotocamera con lookup controls -->
+        <a-entity camera look-controls wasd-controls="acceleration: 30000" 
+        cursor="rayOrigin: mouse" 
+        position="0 0 0" 
+        geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" 
+        material="color: white; shader: flat">
+        
+        </a-entity>
+
+    </a-scene>
+</body>
+</html>
