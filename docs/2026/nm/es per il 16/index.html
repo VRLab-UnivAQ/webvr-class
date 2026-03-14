@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tempio Babilonese</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script>
+
+        <!-- Per la scritta del tempio babilonese-->
+        <style>
+            body { margin: 0; }
+            #info {
+            position: fixed;
+            top: 12px;
+            left: 45%;
+            background: rgba(0,0,0,0.55);
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 9px;
+            font-family: sans-serif;
+            font-size: 14px;
+            z-index: 5000;
+            align-items: center;
+            }
+        </style>
+
+        <!-- ho fatto generare dall'ia uno script per salire in alto ed in basso con i tasti q (verso l'alto) ed e (verso il basso)-->
+        <script>
+            AFRAME.registerComponent('vertical-controls', {
+            init: function () {
+                this.keys = {};
+                this.onKeyDown = (e) => { this.keys[e.key.toLowerCase()] = true; };
+                this.onKeyUp   = (e) => { this.keys[e.key.toLowerCase()] = false; };
+                window.addEventListener('keydown', this.onKeyDown);
+                window.addEventListener('keyup',   this.onKeyUp);
+            },
+            tick: function (time, delta) {
+                const speed = 0.005 * delta;
+                const pos = this.el.object3D.position;
+                if (this.keys['q']) pos.y += speed;
+                if (this.keys['e']) pos.y -= speed;
+            },
+            remove: function () {
+                window.removeEventListener('keydown', this.onKeyDown);
+                window.removeEventListener('keyup',   this.onKeyUp);
+            }
+            });
+    </script>
+</head>
+<body>
+    <div id="info">Tempio Babilonese</div>
+
+    <a-scene fog="type: linear; background="color: #c2894e">
+
+        <!-- cielo -->
+        <a-sky color="#87ceeb"></a-sky>
+
+        <!-- terreno -->
+        <a-plane position="0 0 0" rotation="-90 0 0" width="80" height="80" color="#1df300"></a-plane>
+
+        <!-- Piattafrma esterna-->
+        <a-box position="0 0.15 6" width="18" height="0.3" depth="4" color="#c8a060"></a-box>
+
+        <!-- Scalini -->
+        <a-box position="0 0.25 8.5" width="14" height="0.5" depth="1" color="#b8905a"></a-box>
+        <a-box position="0 0.55 8.0" width="14" height="0.5" depth="1" color="#b8905a"></a-box>
+        <a-box position="0 0.85 7.5" width="14" height="0.5" depth="1" color="#b8905a"></a-box>
+        <a-box position="0 1.15 7.0" width="14" height="0.5" depth="1" color="#b8905a"></a-box>
+
+        <!-- primo piano -->
+        <a-box position="0 1.5 0" width="16" height="3" depth="14"
+            color="#b88040"></a-box>
+
+        <!-- secondo piano -->
+        <a-box position="0 4.5 0" width="12" height="3" depth="10"
+            color="#c49050"></a-box>
+
+        <!-- terzo piano -->
+        <a-box position="0 7.5 0" width="8" height="4" depth="7"
+            color="#d4a060"></a-box>
+
+        <!-- cima -->
+        <a-box position="0 11 0" width="5" height="4" depth="4.5"
+            color="#e8b870"></a-box>
+
+        <!-- Porta del santuario -->
+        <a-box position="0 9.5 2.4" width="1.4" height="2" depth="0.15"
+            color="#3d1f00"></a-box>
+        <!-- Arco porta -->
+        <a-cylinder position="0 10.75 2.4" radius="0.7" height="0.15"
+                    rotation="90 0 0" color="#3d1f00"></a-cylinder>
+
+
+        <!-- decorazioni tetto -->
+        <a-box position="-1.8 12.73 2.2"  width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position="-0.6 12.73 2.2"  width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position=" 0.6 12.73 2.2"  width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position=" 1.8 12.73 2.2"  width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position="-1.8 12.73 -2.2" width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position="-0.6 12.73 -2.2" width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position=" 0.6 12.73 -2.2" width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+        <a-box position=" 1.8 12.73 -2.2" width="0.5" height="0.5" depth="0.5" color="#c49050"></a-box>
+
+        
+
+        <!-- colonne -->
+        <a-cylinder position="-1.5 1.5 7.5" radius="0.3" height="3" color="#bf9055"></a-cylinder>
+        <a-cylinder position=" 1.5 1.5 7.5" radius="0.3" height="3" color="#bf9055"></a-cylinder>
+        <!-- capitelli -->
+        <a-box position="-1.5 3.2 7.5" width="0.8" height="0.35" depth="0.8" color="#a87840"></a-box>
+        <a-box position=" 1.5 3.2 7.5" width="0.8" height="0.35" depth="0.8" color="#a87840"></a-box>
+
+        <!-- albero a sinistra -->
+        <a-cylinder position="-10 2 3" radius="0.5" height="4" color="#7a4a18"></a-cylinder>
+        <a-cone position="-10 4.8 3" radius-bottom="2" radius-top="0.1" height="2.5" color="#2e7a1f"></a-cone>
+        <a-cone position="-10 4.2 3" radius-bottom="2.3" radius-top="0.1" height="1.5" color="#357a23"></a-cone>
+
+        <!-- albero a destra -->
+        <a-cylinder position="10 2 3" radius="0.5" height="4" color="#7a4a18"></a-cylinder>
+        <a-cone position="10 4.8 3" radius-bottom="2" radius-top="0.1" height="2.5" color="#2e7a1f"></a-cone>
+        <a-cone position="10 4.2 3" radius-bottom="2.3" radius-top="0.1" height="1.5" color="#357a23"></a-cone>
+
+        <!-- albero dietro a sx -->
+        <a-cylinder position="-9 2 -7" radius="0.5" height="4" color="#7a4a18"></a-cylinder>
+        <a-cone position="-9 4.8 -7" radius-bottom="2" radius-top="0.1" height="2.5" color="#2e7a1f"></a-cone>
+
+        <!-- albero dietro a dx -->
+        <a-cylinder position="14 2 -7" radius="0.5" height="4" color="#7a4a18"></a-cylinder>
+        <a-cone position="14 4.8 -7" radius-bottom="2" radius-top="0.1" height="2.5" color="#2e7a1f"></a-cone>
+
+        <!-- camera che fa riferimento allo script -->
+        <a-camera position="0 2.5 20" look-controls wasd-controls vertical-controls></a-camera>
+
+        </a-scene>
+    </body>
+</html>
