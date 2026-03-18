@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <title>Il mio Progetto Foto 360</title>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-assets>
-        <img id="sky" 
-             src="https://live.staticflickr.com/2253/2081097014_913531b606_k.jpg" 
-             crossorigin="anonymous">
-      </a-assets>
+      <a-sky src="IMG/foto360.jpg"></a-sky>
 
-      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
-
-      <a-camera></a-camera>
+      <a-entity camera look-controls wasd-controls>
+        <a-entity 
+          cursor="fuse: true; fuseTimeout: 1000"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: white; shader: flat">
+        </a-entity>
+      </a-entity>
     </a-scene>
   </body>
 </html>
-
