@@ -1,3 +1,3 @@
 Esercizio di Foto 360
 
-Foto 360 di (dechrigi): https://www.flickr.com/photos/dechrigi/
+Foto 360 di (Uwe Dörnbrack): https://www.flickr.com/photos/nb-fotos/
