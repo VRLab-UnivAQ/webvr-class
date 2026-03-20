@@ -1,0 +1,36 @@
+html id="full-aframe-file"
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame Sky + Testo</title>
+    <meta name="description" content="Scena VR con immagine 360 e testo">
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+
+      <!-- Precaricamento asset -->
+      <a-assets>
+        <img id="skyTexture" src="img/foto2.jpg">
+      </a-assets>
+
+      <!-- Sfondo 360 -->
+      <a-sky src="#skyTexture" rotation="0 -90 0"></a-sky>
+
+      <!-- Camera -->
+      <a-entity camera look-controls position="0 1.6 0"></a-entity>
+
+      <!-- Testo fluttuante -->
+      <a-text 
+        value="Ciao mondo!"
+        position="0 2 -3"
+        align="center"
+        color="#FFFFFF"
+        scale="2 2 2">
+      </a-text>
+
+    </a-scene>
+  </body>
+</html>
