@@ -2,13 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360° Image - A-Frame</title>
-    <meta name="description" content="360&deg; Image - A-Frame">
+    <title>A-Frame 360 Sky Esempio</title>
+    <!-- Libreria A-Frame -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sky src="immagine/foto360.jpg" color="#ECECEC"></a-sky>
+      <!-- Cielo con immagine 360 -->
+      <a-sky src="img/42832996790_71e52a157d_c (1).jpg"></a-sky>
+
+      <!-- Camera + cursor per guardarsi intorno -->
+      <a-entity camera look-controls wasd-controls>
+        <a-entity 
+          cursor="fuse: true; fuseTimeout: 1000"
+          position="0 0 -1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+          material="color: white; shader: flat">
+        </a-entity>
+      </a-entity>
     </a-scene>
   </body>
 </html>
