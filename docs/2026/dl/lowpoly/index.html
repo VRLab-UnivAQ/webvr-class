@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Western standoff - total view</title>
+  <meta name="description" content="Hello World in VR con A-Frame.">
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script>AFRAME.registerComponent('vertical-movement', {
+  init: function () {
+    this.speed = 0.15; // Velocità di salita/discesa
+    this.keys = {};
+    window.addEventListener('keydown', (e) => { 
+      this.keys[e.key] = true; 
+      if (e.key === ' ') e.preventDefault(); // Impedisce lo scroll della pagina
+    });
+    window.addEventListener('keyup', (e) => { 
+      this.keys[e.key] = false; 
+    });
+  },
+
+  tick: function () {
+    let pos = this.el.getAttribute('position');}})
+</script>
+<script>
+    // Componente custom: al click reindirizza a un'altra pagina
+    AFRAME.registerComponent('link-to', {
+      schema: { type: 'string', default: '' },
+      init: function () {
+        this.el.addEventListener('click', () => {
+          window.location.href = this.data;
+        });
+      }
+    });</script>
+</head>
+<body>
+  <a-scene>
+    <!--portalozzi-->
+    <!--portale rana-->
+    <a-entity
+      position="2 19 5"
+      link-to="rana.html">
+
+      <!-- Anello visivo del portale -->
+      <a-torus
+        color="green"
+        radius="0.5"
+        radius-tubular="0.05"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+      </a-torus>
+
+      <!-- Superficie interna del portale (piano semitrasparente) -->
+      <a-plane
+        width="0.8" height="0.8"
+        color="#001F33"
+        opacity="0.6"
+        side="double">
+      </a-plane>
+
+      <!-- Etichetta testuale -->
+      <a-text
+        value="→ Vuoi essere\nla rana?"
+        align="center"
+        color="Black"
+        position="0 -1 0.1"
+        width="10">
+      </a-text>
+
+    </a-entity>    
+
+<!--portale rana-->
+    <a-entity
+      position="-2 19 5"
+      link-to="fenicottero.html">
+
+      <!-- Anello visivo del portale -->
+      <a-torus
+        color="pink"
+        radius="0.5"
+        radius-tubular="0.05"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+      </a-torus>
+
+      <!-- Superficie interna del portale (piano semitrasparente)-->
+      <a-plane
+        width="0.8" height="0.8"
+        color="#001F33"
+        opacity="0.6"
+        side="double">
+      </a-plane>
+
+      <!-- Etichetta testuale -->
+      <a-text
+        value="→ Vuoi essere\nil fenicottero?"
+        align="center"
+        color="Black"
+        position="0 -1 0.1"
+        width="10">
+      </a-text>
+
+    </a-entity>
+
+    <!--controlli camera-->
+    <a-entity id="rig" position="0 20 12">
+            <a-entity camera look-controls wasd-controls vertical-movement>
+                <a-entity 
+                    cursor="fuse: true; fuseTimeout: 1000"
+                    position="0 0 -1"
+                    geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: brown; shader: flat">
+                </a-entity>
+            </a-entity>
+        </a-entity>
+
+    <!-- Suolo -->
+    <a-plane position="0 0 -4" 
+             rotation="-90 0 0" 
+             width="40" 
+             height="30" 
+             src="img/sabbia.jpg"></a-plane>
+    
+    <!-- Luci per illuminazione -->
+    <a-light type="ambient" color="#554433"></a-light>
+    
+    <a-light type="directional" 
+             color="#ffcc88" 
+             intensity="1.5" 
+             position="0 40 0" 
+             target="#rig">
+    </a-light>
+
+    <a-sky color="#fcf3e3"></a-sky>
+    
+    <!-- Cowboys -->
+    <a-entity
+      gltf-model="model/fenicottero.glb"
+      position="-2 0 -2"
+      scale="0.7 0.7 0.7"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/rana.glb"
+      position="2 0 -2"
+      scale="0.7 0.7 0.7"
+      rotation="0 -90 0">
+    </a-entity>
+
+    <!-- Saloon -->
+    <a-entity
+      gltf-model="model/Saloon.glb"
+      position="0 0 -8"
+      scale="0.5 0.5 0.5"
+      rotation="0 0 0">
+    </a-entity>
+
+<!-- Riposo navicelle -->
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-5.53 0 -6"
+      scale="1 1 1"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-8.53 0 -6"
+      scale="1 1 1"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-11.53 0 -6"
+      scale="1 1 1"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/watering_trough.glb"
+      position="-5.53 0.2 -5"
+      scale="1.5 1.5 1.5"
+      rotation="0 130 -2">
+    </a-entity>
+
+    <!--Cavalcature-->
+    <a-entity
+      gltf-model="model/Horse.glb"
+      position="-4.5 0 -7.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/White_Horse.glb"
+      position="-5.5 0 -7.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Spaceship.glb"
+      position="-8 0.5 -8.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Spaceship_2.glb"
+      position="-12 0.5 -9.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 15 0">
+    </a-entity>
+    
+<!-- Cianfrusaglie a destra -->
+    <a-entity
+      gltf-model="model/Barrel.glb"
+      position="4.5 0 -6"
+      scale="5.5 5.5 5.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Barrel.glb"
+      position="5 0.5 -7"
+      scale="5.5 5.5 5.5"
+      rotation="0 0 90">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Crate.glb"
+      position="6 0 -6.5"
+      scale="5.5 5.5 5.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Crate.glb"
+      position="5.4 0 -5.65"
+      scale="5 5 5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Crate.glb"
+      position="6.5 0 -5.5"
+      scale="7 7 7"
+      rotation="0 0 0">
+    </a-entity>
+
+<!--Ambiente e suolo-->
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-5.53 0 -4.5"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="5 0 -6.5"
+      scale="2.5 2.5 2.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="5 0 -5.5"
+      scale="2.5 2.5 2.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="6.5 0 -5.5"
+      scale="2.5 2.5 2.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Hay.glb"
+      position="-4.35 0 -9.5"
+      scale="10 10 10"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Hay.glb"
+      position="-4.35 0 -10.5"
+      scale="10 10 10"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Hay.glb"
+      position="-5.35 0 -10"
+      scale="10 10 10"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="11 0 -2"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+     <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="9 0 -2"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="10 0 -3"
+      scale="2 2 2"
+      rotation="0 90 0">
+    </a-entity>
+
+     <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="10 0 -1"
+      scale="2 2 2"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-14.5 0 0.5"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-14.5 0 -4.5"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Dead_tree.glb"
+      position="-10 1.8 -4.5"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-11.5 0 -4.5"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Log_Pile.glb"
+      position="-7 0.55 -12"
+      scale="8 8 8"
+      rotation="0 -45 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Dead_tree1.glb"
+      position="-9.5 0 -13"
+      scale="1 1 1"
+      rotation="0 -45 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Dead_tree1.glb"
+      position="-15 0 -9.5"
+      scale="1 1 1"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-15 0 -9.5"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-9.5 0 -13"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Dead_tree1.glb"
+      position="5.5 0 -14"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="5.5 0 -14"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Tree.glb"
+      position="12.5 0 -2.5"
+      scale="0.2 0.2 0.2"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="3.5 0 -14"
+      scale="3 3 3"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Rocks.glb"
+      position="9 0.1 -1"
+      scale="0.5 0.5 0.5"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Rocks.glb"
+      position="-6.53 0.1 -4.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Rocks.glb"
+      position="-4.43 0.1 -4.5"
+      scale="0.5 0.5 0.5"
+      rotation="0 45 0">
+    </a-entity>
+
+<!--Sentiero-->
+    <a-entity
+      gltf-model="model/Path.glb"
+      position="0.5 -0.15 9"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Path.glb"
+      position="0.5 -0.15 5.3"
+      scale="2 2 2"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Path1.glb"
+      position="0.5 -0.15 2.4"
+      scale="2 2 2"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Cactus.glb"
+      position="-2 1 4"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-2 0 4"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="-2 0 5"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="3.3 0 4"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="3.3 0 5"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/grass_yellowing.glb"
+      position="3.3 0 2.5"
+      scale="2 2 2"
+      rotation="0 0 0">
+    </a-entity>
+
+<!--Magazzino-->
+    <a-entity
+      gltf-model="model/Storage_House.glb"
+      position="10 0 -9.5"
+      scale="5 5 5"
+      rotation="0 0 0">
+    </a-entity>
+
+<!--Villaggio-->
+    <a-entity
+      gltf-model="model/Houses.glb"
+      position="16 0 -10.5"
+      scale="5 5 5"
+      rotation="0 0 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Farm.glb"
+      position="-15 0 7"
+      scale="4 4 4"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Houses2.glb"
+      position="-7 0 7"
+      scale="6 6 6"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Houses2.glb"
+      position="15 0 7"
+      scale="6 6 6"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/House.glb"
+      position="8.5 0 6.5"
+      scale="5 5 5"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/House1.glb"
+      position="4.5 0 6.5"
+      scale="5 5 5"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Well.glb"
+      position="10 0.5 -2"
+      scale="2.5 2.5 2.5"
+      rotation="0 0 0">
+    </a-entity>
+
+<!--Cancello-->
+    <a-entity
+      gltf-model="model/Gate.glb"
+      position="-13 0 -2"
+      scale="1.5 1.5 1.5"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-13 0 -4.5"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-13 0 1"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-13 1 -4.5"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Fence.glb"
+      position="-13 1 1"
+      scale="1 1 1"
+      rotation="0 90 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Cactus.glb"
+      position="-14.5 1 0.5"
+      scale="1 1 1"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Barrel_cactus.glb"
+      position="-14.5 0 -4.5"
+      scale="0.2 0.2 0.2"
+      rotation="0 180 0">
+    </a-entity>
+
+    <a-entity
+      gltf-model="model/Sun.glb"
+      position="0 40 -6"
+      scale="0.1 0.1 0.1"
+      rotation="0 90 90">
+    </a-entity>
+
+  </a-scene>
+</body>
+</html>
