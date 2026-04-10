@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Il mio Progetto Foto 360</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script>
+  AFRAME.registerComponent('link-to', {
+    schema: { type: 'string' },
+    init: function () {
+      this.el.addEventListener('click', () => {
+        window.location.href = this.data;
+      });
+    }
+  });
+</script>
+</head>
+  <body>
+  <a-scene>
+  <a-sky src="IMG/scena2.jpg"></a-sky>
+<a-entity gltf-model="IMG/models/aereo.glb" 
+          position="-5 -2.9 0  " 
+          scale="0.5 0.5 0.5" 
+          rotation="0 270 0">
+</a-entity>
+
+  <a-plane position="-5 -3 0" 
+           rotation="-90 -1 -1" 
+           width="6" 
+           height="6" 
+           color="grey">
+  </a-plane>
+
+  <a-entity camera look-controls>
+    <a-entity cursor="fuse: true; fuseTimeout: 1000"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+              material="color: white; shader: flat"
+              raycaster="objects: [link-to]">
+    </a-entity>
+  </a-entity>
+
+  <a-entity id="tona alla sala 1" 
+          position="0 0 -3" 
+          rotation="0 0 0" 
+          link-to="sala1.html">
+
+  <a-torus color="#00cfff" radius="0.8" radius-tubular="0.05"
+           animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+  </a-torus>
+  
+  <a-circle radius="0.75" color="#3d4a5c" opacity="0.6"></a-circle>
+  
+  <a-text value="torna alla sala 1" align="center" color="white" position="0 1.1 0" width="4"></a-text>
+</a-entity>
+
+</a-scene>
+</body>
+</html>
