@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fushimi Inari - Scena 2: Il Tempio</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+    
+    <a-assets>
+      <a-asset-item id="torii" src="models/Torii.glb"></a-asset-item>
+      <a-asset-item id="torii2" src="models/JapaneseTorii.glb"></a-asset-item>
+      <a-asset-item id="tempio" src="models/Pagoda.glb"></a-asset-item>
+      <a-asset-item id="alberoAlto" src="models/Tree1.glb"></a-asset-item>
+      <a-asset-item id="alberoGrande" src="models/BigTree.glb"></a-asset-item>
+      <a-asset-item id="alberoLargo" src="models/Tree2.glb"></a-asset-item>
+      <a-asset-item id="redLantern" src="models/redlantern.glb"></a-asset-item>
+      <a-asset-item id="lanterna" src="models/Toro.glb"></a-asset-item>
+      <a-asset-item id="lampione" src="models/Lamp.glb"></a-asset-item> 
+      <a-asset-item id="statua" src="models/FoxStatue.glb"></a-asset-item>
+      <a-asset-item id="scale" src="models/Stairs.glb"></a-asset-item>
+      <a-asset-item id="muro" src="models/Wall.glb"></a-asset-item>
+      <a-asset-item id="gazebo" src="models/Gazebo.glb"></a-asset-item>
+      <a-asset-item id="case" src="models/Houses.glb"></a-asset-item>
+      <a-asset-item id="casa2" src="models/Cottage.glb"></a-asset-item>
+      <a-asset-item id="siepe" src="models/Hedge.glb"></a-asset-item>
+      <a-asset-item id="ciliegio" src="models/CherryTree.glb"></a-asset-item>
+      <a-asset-item id="piattaforma" src="models/Base.glb"></a-asset-item>
+      <a-asset-item id="cespugli" src="models/Bush.glb"></a-asset-item>
+     
+
+    </a-assets>
+
+      <a-scene fog="type: exponential; color: #ADD8E6; density: 0" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+      
+      <a-sky color="#87ceeb"></a-sky>
+
+      <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="300" color="#8F8F8F"></a-plane>
+
+      
+      <a-light type="directional" intensity="0.8" position="-1 5 2" color="#ffccaa"></a-light>
+      <a-light type="ambient" intensity="0.6"></a-light>
+
+<!--entrata e tempio -->
+      <a-entity gltf-model="#torii2" position="0 2.2 12" scale="1 1 1" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#tempio" position="0 1 -53" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#torii" position="0 4 -4" scale="17 17 15" rotation="0 225 0"></a-entity>
+      <a-plane position="0 0.01 -9" rotation="-90 90 0" width="45" height="4" color="#EFEFEF"></a-plane>
+      <a-entity gltf-model="#scale" position="0 0 -33" scale="40 30 10" rotation="0 360 0"></a-entity>
+      <a-box position="-10 1.7 -59.2" rotation="-90 0 0" width="80" height="50" depth="3" color="#404040"></a-box>
+      <a-entity gltf-model="#scale" position="-33 0 -33" scale="40 30 10" rotation="0 360 0"></a-entity>
+      <a-entity gltf-model="#piattaforma" position="-46.3 1.5 -33" scale="3.5 3 2" rotation="45 0 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-16 0 -34" scale="7 1.7 2" rotation="0 360 0"></a-entity>
+      <a-entity gltf-model="#muro" position="16 0 -34" scale="7 1.7 2" rotation="0 360 0"></a-entity>
+
+      <a-entity gltf-model="#statua" position="-9 3.5 -35" scale="1.5 1.5 1.5" rotation="0 90 0"></a-entity> <!--dx-->
+      <a-entity gltf-model="#statua" position="9 3.5 -35" scale="1.5 1.5 1.5" rotation="0 270 0"></a-entity> <!--sx-->
+      <a-entity gltf-model="#lanterna" position="-10.5 3 -32" scale="7 8 7"></a-entity> <!--dx-->
+      <a-entity gltf-model="#lanterna" position="10.5 3 -32" scale="7 8 7"></a-entity> <!--sx-->
+
+      
+      <a-entity gltf-model="#gazebo" position="-16 0 -29" scale="5 5 6" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#redLantern" position="-18 3 -27" scale="1 1 1"></a-entity> <!--davanti-->
+      <a-entity gltf-model="#redLantern" position="-17 3 -27" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-16 3 -27" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-15 3 -27" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-14 3 -27" scale="1 1 1"></a-entity>
+     
+      <a-entity gltf-model="#redLantern" position="-18 3 -31" scale="1 1 1"></a-entity> <!--dietro-->
+      <a-entity gltf-model="#redLantern" position="-17 3 -31" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-16 3 -31" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-15 3 -31" scale="1 1 1"></a-entity> 
+      <a-entity gltf-model="#redLantern" position="-14 3 -31" scale="1 1 1"></a-entity> 
+
+
+      
+<!--sfondo-->
+      <a-entity gltf-model="#lampione" position="-12 0 -9.5" scale="0.5 0.5 0.5"></a-entity> <!--dx-->
+      <a-entity gltf-model="#lampione" position="12 0 -9.5" scale="0.5 0.5 0.5"></a-entity> <!--sx-->
+
+      <a-entity gltf-model="#alberoAlto" position="-25 0 -19" scale="2 2.5 2"></a-entity> <!--dx-->
+      <a-entity gltf-model="#alberoAlto" position="25 0.1 -40" scale="3 3 3"></a-entity> <!--sx-->
+      <a-entity gltf-model="#alberoAlto" position="37 0.1 -45" scale="3 3 3"></a-entity> 
+      <a-entity gltf-model="#alberoAlto" position="32 0.1 -50" scale="3 3 3"></a-entity> <!--sx-->
+      <a-entity gltf-model="#alberoGrande" position="26 6.5 -35" scale="5 5 5"></a-entity> 
+      <a-entity gltf-model="#alberoGrande" position="37 8.5 -30" scale="7 7 7"></a-entity>
+      <a-entity gltf-model="#alberoGrande" position="45 8.5 -20" scale="7 7 7"></a-entity>
+      <a-entity gltf-model="#alberoGrande" position="32 8.5 -18" scale="7 7 7"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="28 0 -70" scale="3 3 3"></a-entity> <!--sx-->
+      <a-entity gltf-model="#alberoLargo" position="40 0 -65" scale="3 3 3"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="15 0 -95" scale="4 4 4"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="10 0 -130" scale="4 4 4"></a-entity> 
+      <a-entity gltf-model="#alberoLargo" position="0 0 -110" scale="4 4 4"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="27 0 -90" scale="4 4 4"></a-entity> 
+      <a-entity gltf-model="#alberoLargo" position="-28 0 -90" scale="4 4 4"></a-entity> <!--dx-->
+      <a-entity gltf-model="#alberoLargo" position="-15 0 -95" scale="4 4 4"></a-entity> 
+      <a-entity gltf-model="#alberoLargo" position="-13 0 -100" scale="4 4 4"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="-22 0 -97" scale="4 4 4"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="-14 0 -150" scale="4 4 4"></a-entity>
+      <a-entity gltf-model="#ciliegio" position="-25 0.1 -10" scale="0.1 0.1 0.1"></a-entity>
+      <a-entity gltf-model="#cespugli" position="-25 1 -5" scale="3 3 3"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -5" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -10" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -20" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -30" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -40" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -50" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -60" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -70" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#muro" position="-50 0 -77" scale="7 1.7 2" rotation="0 90 0"></a-entity>
+
+      <a-entity gltf-model="#alberoLargo" position="17 0 -3" scale="1 1 1" rotation="0 0 0"></a-entity><!--sx-->
+      <a-entity gltf-model="#alberoLargo" position="10 0 -2" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="35 0 2" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="22 0 -4" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#ciliegio" position="25 0.1 -3" scale="0.1 0.1 0.1"></a-entity>
+
+      <a-entity gltf-model="#alberoLargo" position="-17 0 -3" scale="1 1 1" rotation="0 0 0"></a-entity><!--dx-->
+      <a-entity gltf-model="#alberoLargo" position="-10 0 -5" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="-35 0 -1" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#alberoLargo" position="-22 0 -6" scale="1 1 1" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#ciliegio" position="-27 0.1 0" scale="0.1 0.1 0.1"></a-entity>
+      
+      
+     
+
+
+      
+      <a-entity gltf-model="#case" position="23 0.1 -21" scale="6 6 6" rotation="0 180 0"></a-entity> <!--sx-->
+      <a-entity gltf-model="#case" position="30 0 -30" scale="5 5 5" rotation="0 180 0"></a-entity> <!--dx-->
+      <a-entity gltf-model="#siepe" position="12 0 -15" scale="3 2 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#siepe" position="12 0 -12" scale="3 2 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#siepe" position="18.5 0 -12" scale="3 2 2" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#casa2" position="-45 3 -40" scale="20 20 20" rotation="0 90 0"></a-entity> <!--dx-->
+      <a-entity gltf-model="#casa2" position="-45 3 -50" scale="20 20 20" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#casa2" position="-45 2 -60" scale="20 20 20" rotation="0 90 0"></a-entity>
+
+
+
+
+
+      
+      
+      
+      
+      <a-entity id="portale-ritorno" position="0 2 6" scale="1.2 1.2 1.2"> 
+        <a-torus
+           color="#FFD700" 
+           radius="1"
+           radius-tubular="0.04"
+           material="emissive: #FFD700; emissiveIntensity: 0.5"
+           animation="property: rotation; to: 0 -360 0; loop: true; dur: 6000; easing: linear">
+        </a-torus>
+
+        <a-circle
+         class="clickable"
+         radius="1"
+         color="#332b00"
+         opacity="0.7"
+         side="double"
+         link="href: scena1.html; title: Torna al Sentiero; visualAspectEnabled: false">
+        </a-circle>
+  
+        <a-light type="point" color="#FFD700" intensity="0" distance="10"></a-light>
+      </a-entity>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a-entity movement-controls="fly: false; speed: 1">
+        <a-entity camera position="0 2.5 0" look-controls></a-entity>
+      </a-entity>
+
+    </a-scene>
+</body>
+</html>
