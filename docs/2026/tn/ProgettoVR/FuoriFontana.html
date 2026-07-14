@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fuori Fontana</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+  
+    <style>
+      #minimappa {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        width: 220px;
+        z-index: 9999;
+        border: 2px solid white;
+        border-radius: 8px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.45);
+        box-shadow: 0 0 12px rgba(0,0,0,0.7);
+      }
+
+      #minimappa img {
+        display: block;
+        width: 100%;
+      }
+
+      #puntino-posizione {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: red;
+        border: 2px solid white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px red;
+      }
+
+      #audio-ui {
+        position: fixed;
+        left: 15px;
+        bottom: 15px;
+        z-index: 10000;
+        max-width: 360px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.65);
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.35;
+        box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      }
+
+      #stop-audio {
+        margin-top: 8px;
+        padding: 6px 10px;
+        border: 1px solid white;
+        border-radius: 6px;
+        color: white;
+        background: rgba(120, 0, 0, 0.8);
+        cursor: pointer;
+      }
+
+      #stop-audio:hover {
+        background: rgba(180, 0, 0, 0.9);
+      }
+    </style>
+
+    <script>
+      const RVA_MAP_POSITIONS = {
+        "FuoriFontana": { left: "42.8%", top: "83.2%" },
+        "Fontana": { left: "55.5%", top: "44.1%" },
+        "ParcoFontana": { left: "69.3%", top: "58.8%" }
+      };
+
+      function aggiornaMessaggioAudio(testo) {
+        const msg = document.getElementById("audio-message");
+        if (msg) msg.textContent = testo;
+        // Aggiorna anche il testo mostrato dentro il visore VR (HUD 3D agganciato alla camera)
+        const msgVR = document.getElementById("audio-message-vr");
+        if (msgVR) msgVR.setAttribute('value', testo);
+      }
+
+      window.audioCorrenteRVA = null;
+
+      function fermaAudioRVA() {
+        if (window.audioCorrenteRVA) {
+          window.audioCorrenteRVA.pause();
+          window.audioCorrenteRVA.currentTime = 0;
+          window.audioCorrenteRVA = null;
+        }
+        aggiornaMessaggioAudio("🎧 Punta un piedistallo o un oggetto per 1 secondo per ascoltare l'audio guida.");
+      }
+
+      AFRAME.registerComponent('audio-guida', {
+        schema: {
+          src: { type: 'string' },
+          title: { type: 'string', default: 'Audio guida' }
+        },
+
+        init: function () {
+          const el = this.el;
+          const data = this.data;
+          this.audio = new Audio(data.src);
+          this.audio.preload = 'auto';
+          this.audio.volume = 1.0;
+
+          el.setAttribute('title', data.title);
+
+          el.addEventListener('mouseenter', function () {
+            aggiornaMessaggioAudio("🎧 Mantieni il puntatore su: " + data.title + " per ascoltare.");
+          });
+
+          el.addEventListener('mouseleave', function () {
+            if (!window.audioCorrenteRVA) {
+              aggiornaMessaggioAudio("🎧 Punta un piedistallo o un oggetto per 1 secondo per ascoltare l'audio guida.");
+            }
+          });
+
+          el.addEventListener('click', () => {
+            if (window.audioCorrenteRVA && window.audioCorrenteRVA !== this.audio) {
+              window.audioCorrenteRVA.pause();
+              window.audioCorrenteRVA.currentTime = 0;
+            }
+            window.audioCorrenteRVA = this.audio;
+            this.audio.currentTime = 0;
+            this.audio.play().then(() => {
+              aggiornaMessaggioAudio("▶ Audio in riproduzione: " + data.title);
+            }).catch(() => {
+              aggiornaMessaggioAudio("Per avviare l'audio, clicca/tocca il piedistallo o l'oggetto una volta.");
+            });
+          });
+
+          this.audio.addEventListener('ended', function () {
+            if (window.audioCorrenteRVA === this) {
+              window.audioCorrenteRVA = null;
+              aggiornaMessaggioAudio("🎧 Punta un piedistallo o un oggetto per 1 secondo per ascoltare l'audio guida.");
+            }
+          });
+        },
+
+        remove: function () {
+          if (this.audio) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+          }
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const room = document.body.dataset.room;
+        const pos = RVA_MAP_POSITIONS[room];
+        const dot = document.getElementById('puntino-posizione');
+        if (dot && pos) {
+          dot.style.left = pos.left;
+          dot.style.top = pos.top;
+        }
+        const stopButton = document.getElementById('stop-audio');
+        if (stopButton) {
+          stopButton.addEventListener('click', fermaAudioRVA);
+        }
+      });
+
+      // ---------------------------------------------------------------
+      // HUD 3D per la VR: minimappa + messaggi audio + pulsante stop,
+      // ricreati come entità A-Frame agganciate alla camera, perché i
+      // <div> HTML in overlay (minimappa e audio-ui) NON sono visibili
+      // dentro il visore una volta entrati in modalità VR immersiva.
+      // La versione HTML resta invariata per chi guarda da schermo piatto.
+      // ---------------------------------------------------------------
+      function creaHudVR() {
+        const scene = document.querySelector('a-scene');
+        const camera = document.querySelector('#rig [camera]');
+        if (!scene || !camera) return;
+
+        const room = document.body.dataset.room;
+        const pos = RVA_MAP_POSITIONS[room] || { left: '50%', top: '50%' };
+        const leftPct = parseFloat(pos.left) / 100;
+        const topPct = parseFloat(pos.top) / 100;
+
+        // --- Gruppo minimappa (in alto a destra nel campo visivo) ---
+        const mapGroup = document.createElement('a-entity');
+        mapGroup.setAttribute('position', '0.8 0.46 -1');
+
+        const mapWidth = 0.45, mapHeight = 0.45;
+
+        const mapBg = document.createElement('a-plane');
+        mapBg.setAttribute('width', mapWidth + 0.03);
+        mapBg.setAttribute('height', mapHeight + 0.03);
+        mapBg.setAttribute('color', '#FFFFFF');
+        mapBg.setAttribute('opacity', '0.85');
+        mapBg.setAttribute('position', '0 0 -0.002');
+        mapGroup.appendChild(mapBg);
+
+        const mapImg = document.createElement('a-image');
+        mapImg.setAttribute('src', 'img/mappaFont.png');
+        mapImg.setAttribute('width', mapWidth);
+        mapImg.setAttribute('height', mapHeight);
+        mapImg.setAttribute('position', '0 0 -0.001');
+        mapGroup.appendChild(mapImg);
+
+        const dotX = (leftPct - 0.5) * mapWidth;
+        const dotY = (0.5 - topPct) * mapHeight;
+        const mapDot = document.createElement('a-circle');
+        mapDot.setAttribute('radius', '0.012');
+        mapDot.setAttribute('color', 'red');
+        mapDot.setAttribute('position', `${dotX} ${dotY} 0`);
+        mapDot.setAttribute('material', 'shader: flat');
+        mapGroup.appendChild(mapDot);
+
+        const mapDotBg = document.createElement('a-circle');
+        mapDotBg.setAttribute('radius', '0.018');
+        mapDotBg.setAttribute('color', 'white');
+        mapDotBg.setAttribute('position', `${dotX} ${dotY} -0.0005`);
+        mapDotBg.setAttribute('material', 'shader: flat');
+        mapGroup.appendChild(mapDotBg);
+
+
+        camera.appendChild(mapGroup);
+
+        // --- Gruppo audio (in basso a sinistra nel campo visivo) ---
+        const audioGroup = document.createElement('a-entity');
+        audioGroup.setAttribute('position', '-0.78 -0.46 -1');
+
+        const audioBg = document.createElement('a-plane');
+        audioBg.setAttribute('width', '0.95');
+        audioBg.setAttribute('height', '0.35');
+        audioBg.setAttribute('color', '#000');
+        audioBg.setAttribute('opacity', '0.55');
+        audioBg.setAttribute('position', '0 0 -0.002');
+        audioGroup.appendChild(audioBg);
+
+        const audioText = document.createElement('a-text');
+        audioText.setAttribute('id', 'audio-message-vr');
+        audioText.setAttribute('value', "Punta un piedistallo o un oggetto per 1 secondo per ascoltare l'audio guida.");
+        audioText.setAttribute('align', 'center');
+        audioText.setAttribute('color', 'white');
+        audioText.setAttribute('width', '0.9');
+        audioText.setAttribute('wrap-count', '28');
+        audioText.setAttribute('position', '0 0.06 0');
+        audioGroup.appendChild(audioText);
+
+        const stopBtnBg = document.createElement('a-plane');
+        stopBtnBg.setAttribute('class', 'clickable');
+        stopBtnBg.setAttribute('width', '0.4');
+        stopBtnBg.setAttribute('height', '0.1');
+        stopBtnBg.setAttribute('color', '#780000');
+        stopBtnBg.setAttribute('position', '0 -0.12 0');
+
+        const stopBtnText = document.createElement('a-text');
+        stopBtnText.setAttribute('value', 'Ferma audio');
+        stopBtnText.setAttribute('align', 'center');
+        stopBtnText.setAttribute('color', 'white');
+        stopBtnText.setAttribute('width', '1.4');
+        stopBtnText.setAttribute('position', '0 0 0.01');
+        stopBtnBg.appendChild(stopBtnText);
+
+        stopBtnBg.addEventListener('click', fermaAudioRVA);
+        audioGroup.appendChild(stopBtnBg);
+
+        camera.appendChild(audioGroup);
+
+        // Di default (modalita' "web", schermo piatto) l'HUD 3D resta nascosto:
+        // si vedono solo i controlli HTML originali. L'HUD 3D compare da solo
+        // quando si entra davvero in VR, e in quel momento i controlli HTML
+        // spariscono: cosi' non si vedono mai entrambi insieme.
+        mapGroup.setAttribute('visible', false);
+        audioGroup.setAttribute('visible', false);
+
+        const minimappaDOM = document.getElementById('minimappa');
+        const audioUiDOM = document.getElementById('audio-ui');
+
+        scene.addEventListener('enter-vr', function () {
+          mapGroup.setAttribute('visible', true);
+          audioGroup.setAttribute('visible', true);
+          if (minimappaDOM) minimappaDOM.style.display = 'none';
+          if (audioUiDOM) audioUiDOM.style.display = 'none';
+        });
+
+        scene.addEventListener('exit-vr', function () {
+          mapGroup.setAttribute('visible', false);
+          audioGroup.setAttribute('visible', false);
+          if (minimappaDOM) minimappaDOM.style.display = '';
+          if (audioUiDOM) audioUiDOM.style.display = '';
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const scene = document.querySelector('a-scene');
+        if (scene.hasLoaded) {
+          creaHudVR();
+        } else {
+          scene.addEventListener('loaded', creaHudVR);
+        }
+      });
+    </script>
+
+  </head>
+  <body data-room="FuoriFontana">
+
+    <!-- Minimappa in alto a destra -->
+    <div id="minimappa">
+      <img src="img/mappaFont.png" alt="Minimappa del sito archeologico">
+      <div id="puntino-posizione"></div>
+    </div>
+
+    <!-- Interfaccia audio guida -->
+    <div id="audio-ui">
+      <div id="audio-message">🎧 Punta un piedistallo per 1 secondo per ascoltare l'audio guida.</div>
+      <button id="stop-audio" type="button">Ferma audio</button>
+    </div>
+
+    <a-scene>
+      <!--SFONDO-->
+      <a-sky src="sfondi/FuoriFontana.jpeg"></a-sky>
+
+      <!-- Camera + cursore -->
+      <a-entity id="rig" position="10 1.5 4" rotation ="0 130 0">
+        <a-entity camera look-controls wasd-controls rotation="0 0 0">
+          <a-entity
+            cursor="fuse: true; fuseTimeout: 1000"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: brown; shader: flat">
+          </a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- Controller VR (laser pointer): puntano ovunque, non solo al centro,
+           quindi possono selezionare anche i pulsanti dell'HUD fuori asse -->
+      <a-entity laser-controls="hand: left" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+      <a-entity laser-controls="hand: right" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+
+      
+      <!--Leggio Prima Parte-->
+      <a-entity
+          gltf-model= "glb/LChiesaFontana.glb"
+          position="8 -3 6.5"
+          scale="0.4 0.4 0.4"
+          rotation="0 40 0"
+          class="clickable"
+          audio-guida="src: audio/chiesa e fontana audio.wav; title: Chiesa di San Vito e la Fontana">
+      </a-entity>
+
+      <!--OGGETTI E DESCRIZIONI-->
+      <a-entity
+          gltf-model="obj/ReGatto-optimized.glb"
+          position="16 3.7 7.2"
+          scale="5.5 5.5 5.5"
+          rotation="0 -220 0"
+          class="clickable"
+          audio-guida="src: audio/testeanimali.wav; title: Mascherone del Re Gatto">
+      </a-entity>
+
+      <a-text
+          value="Mascherone del Re Gatto"
+          align="center"
+          color="black"
+          position="15.9 0.7 7.2"
+          width="8"
+          rotation="0 -131.2 0">
+      </a-text>
+
+
+      <!--PORTALE VERSO FONTANA-->
+      <a-entity class="portale" position="1.5 1 -5.5" link="href: Fontana.html">
+      
+        <!-- Anello visivo del portale -->
+        <a-torus
+          color="blue"
+          radius="2.4"
+          radius-tubular="0.05"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing: linear">
+        </a-torus>
+
+        <!-- Superficie interna del portale (piano semitrasparente) -->
+        <a-circle
+          radius="2.4"
+          color="#001F33"
+          opacity="0.6"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing: linear"
+          side="double">
+        </a-circle>
+
+        <!-- Etichetta testuale -->
+
+        <a-text
+          value="→ FONTANA"
+          align="center"
+          color="white"
+          position="0.5 3.5 0.5"
+          width="18"
+          rotation="0 45 0">
+        </a-text>
+
+      </a-entity>
+
+       <!--PORTALE VERSO PARCO DELLA FONTANA-->
+      <a-entity class="portale" position="11.5 1 -8.5" link="href: ParcoFontana.html">
+      
+        <!-- Anello visivo del portale -->
+        <a-torus
+          color="blue"
+          radius="2.4"
+          radius-tubular="0.05"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing: linear">
+        </a-torus>
+
+        <!-- Superficie interna del portale (piano semitrasparente) -->
+        <a-circle
+          radius="2.4"
+          color="#001F33"
+          opacity="0.6"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing: linear"
+          side="double">
+        </a-circle>
+
+        <!-- Etichetta testuale -->
+
+        <a-text
+          value="→ PARCO FONTANA"
+          align="center"
+          color="white"
+          position="0 3.5 0.5"
+          width="18"
+          rotation="0 -2 0">
+        </a-text>
+
+      </a-entity>
+
+    </a-scene>
+    
+
+
+
+  </body>
+</html>
