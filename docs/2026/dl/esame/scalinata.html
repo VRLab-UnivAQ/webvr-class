@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Scalinata</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+    <style>
+      /* OVERLAY BROWSER (desktop/mobile, NON VR)
+         Questi stili valgono per #minimappa e #audio-ui, i due pannelli
+         HTML/CSS classici che in modalità VR vengono nascosti */
+      #minimappa {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        width: 220px;
+        z-index: 9999;
+        border: 2px solid white;
+        border-radius: 8px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.45);
+        box-shadow: 0 0 12px rgba(0,0,0,0.7);
+      }
+
+      #minimappa img {
+        display: block;
+        width: 100%;
+      }
+
+      /* Puntino rosso che indica la stanza corrente sulla minimappa */
+      #puntino-posizione {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        background: red;
+        border: 2px solid white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 8px red;
+      }
+
+      #audio-ui {
+        position: fixed;
+        left: 15px;
+        bottom: 15px;
+        z-index: 10000;
+        max-width: 360px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: white;
+        background: rgba(0, 0, 0, 0.65);
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.35;
+        box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      }
+
+      #stop-audio {
+        padding: 6px 10px;
+        border: 1px solid white;
+        border-radius: 6px;
+        color: white;
+        background: rgba(120, 0, 0, 0.8);
+        cursor: pointer;
+      }
+
+      #stop-audio:hover {
+        background: rgba(180, 0, 0, 0.9);
+      }
+    </style>
+
+    <script>
+      /* MAPPA POSIZIONI STANZE
+         Frazioni della posizione di ognistanza sull'immagine della minimappa. 
+         Questo dizionario è condiviso da tutte le pagine del tour (index, cupola, navata,
+         portone, scalinata): ogni pagina imposta <body data-room="...">
+         col proprio nome e lo script legge in automatico la voce giusta.*/
+      const RVA_MAP_POSITIONS = {
+        "index": { x: 0.45, y: 0.98 },
+        "cupola": { x: 0.45, y: 0.33 },
+        "navata": { x: 0.45, y: 0.57 },
+        "portone": { x: 0.45, y: 0.85 },
+        "scalinata": { x: 0.45, y: 0.98 }
+      };
+
+      // Larghezza/altezza reali (in metri, spazio locale) del piano
+      // dell'immagine minimappa nell'HUD 3D — serve per convertire le
+      // frazioni 0-1 di RVA_MAP_POSITIONS in coordinate del puntino.
+      const MINIMAP_SIZE = 0.58;
+
+      /* PULSANTE "FERMA AUDIO" IN VR — generazione texture su canvas
+         A-Frame non supporta bordi arrotondati nativi su un piano, quindi
+         il pulsante (sfondo rosso semi-trasparente, bordo bianco, angoli
+         stondati, testo) viene disegnato su un <canvas> nascosto e usato
+         come texture di un a-plane. Si creano due canvas — stato normale
+         e stato "hover" — scambiati a runtime quando il cursore/laser
+         punta sul pulsante */
+      function creaCanvasPulsanteFermaAudio(id, coloreSfondo) {
+        const canvas = document.createElement('canvas');
+        canvas.id = id;
+        canvas.width = 400;
+        canvas.height = 120;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height;
+        const r = h * 0.32; // raggio degli angoli stondati
+
+        // Traccia il contorno stondato
+        ctx.clearRect(0, 0, w, h);
+        ctx.beginPath();
+        ctx.moveTo(r, 0);
+        ctx.lineTo(w - r, 0);
+        ctx.quadraticCurveTo(w, 0, w, r);
+        ctx.lineTo(w, h - r);
+        ctx.quadraticCurveTo(w, h, w - r, h);
+        ctx.lineTo(r, h);
+        ctx.quadraticCurveTo(0, h, 0, h - r);
+        ctx.lineTo(0, r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.closePath();
+
+        // Riempimento + bordo bianco
+        ctx.fillStyle = coloreSfondo;
+        ctx.fill();
+        ctx.lineWidth = h * 0.06;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `bold ${Math.round(h * 0.4)}px Arial, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Ferma audio', w / 2, h / 2 + h * 0.02);
+
+        // Il canvas viene solo aggiunto al DOM come sorgente pixel della texture
+        document.head.appendChild(canvas);
+        return canvas;
+      }
+
+      // crea il canvas del pulsante "Ferma audio" richiamandolo dall' <head>
+      creaCanvasPulsanteFermaAudio('stop-audio-canvas', 'rgba(120, 0, 0, 0.85)');
+      creaCanvasPulsanteFermaAudio('stop-audio-canvas-hover', 'rgba(180, 0, 0, 0.95)');
+
+      // Tiene traccia dell'unico audio attualmente in riproduzione, per
+      // poterlo fermare se se ne avvia un altro o se si preme "Ferma audio"
+      window.audioCorrenteRVA = null;
+
+      /* fermaAudioRVA():
+         Ferma l'audio in riproduzione (se presente) e resetta lo stato.*/
+      function fermaAudioRVA() {
+        if (window.audioCorrenteRVA) {
+          window.audioCorrenteRVA.pause();
+          window.audioCorrenteRVA.currentTime = 0;
+          window.audioCorrenteRVA = null;
+        }
+      }
+
+      /* COMPONENTE A-FRAME: audio-guida
+         Applicato ai modelli 3D. Ogni istanza crea il proprio oggetto Audio e gestisce:
+           - click: avvia la riproduzione, fermando l'eventuale audio
+             precedente ancora attivo;
+           - ended: quando l'audio finisce da solo, resetta lo stato. */
+      AFRAME.registerComponent('audio-guida', {
+        schema: {
+          src: { type: 'string' },
+          title: { type: 'string', default: 'Audio guida' }
+        },
+
+        init: function () {
+          const el = this.el;
+          const data = this.data;
+          this.audio = new Audio(data.src);
+          this.audio.preload = 'auto';
+          this.audio.volume = 1.0;
+
+          el.setAttribute('title', data.title);
+
+          el.addEventListener('click', () => {
+            if (window.audioCorrenteRVA && window.audioCorrenteRVA !== this.audio) {
+              window.audioCorrenteRVA.pause();
+              window.audioCorrenteRVA.currentTime = 0;
+            }
+            window.audioCorrenteRVA = this.audio;
+            this.audio.currentTime = 0;
+            this.audio.play().catch(() => {
+              // Riproduzione bloccata dal browser finché non c'è
+              // un'interazione utente: al primo click/tap funzionerà.
+            });
+          });
+
+          this.audio.addEventListener('ended', function () {
+            if (window.audioCorrenteRVA === this) {
+              window.audioCorrenteRVA = null;
+            }
+          });
+        },
+
+        // Pulizia se l'entità viene rimossa dalla scena mentre l'audio è attivo
+        remove: function () {
+          if (this.audio) {
+            this.audio.pause();
+            this.audio.currentTime = 0;
+          }
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+        // ---- Posiziona il puntino sulla minimappa ----
+        const room = document.body.dataset.room;
+        const pos = RVA_MAP_POSITIONS[room];
+
+        const dotDom = document.getElementById('puntino-posizione');
+        if (dotDom && pos) {
+          dotDom.style.left = (pos.x * 100) + '%';
+          dotDom.style.top = (pos.y * 100) + '%';
+        }
+
+        const dotHud = document.getElementById('puntino-posizione-hud');
+        if (dotHud && pos) {
+          const x = (pos.x - 0.5) * MINIMAP_SIZE;
+          const y = (0.5 - pos.y) * MINIMAP_SIZE;
+          dotHud.setAttribute('position', { x: x, y: y, z: 0.004 });
+        }
+
+        // ---- Pulsante "Ferma audio", versione browser ----
+        const stopButtonDom = document.getElementById('stop-audio');
+        if (stopButtonDom) {
+          stopButtonDom.addEventListener('click', fermaAudioRVA);
+        }
+
+        // Pulsante "Ferma audio", versione VR 
+        // Il click arriva sia dal cursore a sguardo sia dal laser
+        // dei controller Quest, entrambi emettono lo stesso
+        // evento 'click' standard di A-Frame sull'entità puntata.
+        const stopButtonHud = document.getElementById('stop-audio-hud');
+        const stopButtonPlane = document.getElementById('stop-audio-plane');
+        if (stopButtonHud) {
+          stopButtonHud.addEventListener('click', fermaAudioRVA);
+
+          stopButtonHud.addEventListener('mouseenter', function () {
+            if (stopButtonPlane) stopButtonPlane.setAttribute('material', 'src', '#stop-audio-canvas-hover');
+            stopButtonHud.setAttribute('scale', '1.06 1.06 1.06');
+          });
+
+          stopButtonHud.addEventListener('mouseleave', function () {
+            if (stopButtonPlane) stopButtonPlane.setAttribute('material', 'src', '#stop-audio-canvas');
+            stopButtonHud.setAttribute('scale', '1 1 1');
+          });
+        }
+
+        // Switch automatico overlay DOM <-> HUD 3D:
+        // 'enter-vr'/'exit-vr' sono eventi standard emessi da <a-scene>
+        // quando si entra/esce dalla modalità immersiva e permettono lo switch
+        // tra DOM e HUD 3D
+        const scene = document.querySelector('a-scene');
+        const overlayMinimappa = document.getElementById('minimappa');
+        const overlayAudioUi = document.getElementById('audio-ui');
+        const hudMinimappa = document.getElementById('hud-minimappa');
+        const hudAudio = document.getElementById('hud-audio');
+
+        function attivaModalitaVR() {
+          if (overlayMinimappa) overlayMinimappa.style.display = 'none';
+          if (overlayAudioUi) overlayAudioUi.style.display = 'none';
+          if (hudMinimappa) hudMinimappa.setAttribute('visible', 'true');
+          if (hudAudio) hudAudio.setAttribute('visible', 'true');
+        }
+
+        function attivaModalitaBrowser() {
+          if (overlayMinimappa) overlayMinimappa.style.display = '';
+          if (overlayAudioUi) overlayAudioUi.style.display = '';
+          if (hudMinimappa) hudMinimappa.setAttribute('visible', 'false');
+          if (hudAudio) hudAudio.setAttribute('visible', 'false');
+        }
+
+        if (scene) {
+          scene.addEventListener('enter-vr', attivaModalitaVR);
+          scene.addEventListener('exit-vr', attivaModalitaBrowser);
+        }
+      });
+    </script>
+
+    <script>
+      /* COMPONENTE CUSTOM: teletrasporto.
+         Al click del mouse l'utente viene teletrasportato in un'altra stanza */
+      AFRAME.registerComponent('link-to', {
+        schema: { type: 'string', default: '' },
+        init: function () {
+          this.el.addEventListener('click', () => {
+            window.location.href = this.data;
+          });
+        }
+      });
+    </script>
+
+  </head>
+
+  <!-- data-room identifica la stanza corrente: usato per posizionare il
+       puntino sulla minimappa. Cambia valore per ogni pagina del tour -->
+  <body data-room="scalinata">
+
+    <!-- OVERLAY BROWSER: minimappa
+         Nascosta automaticamente quando si entra in VR -->
+    <div id="minimappa">
+      <img src="minimappa.png" alt="Minimappa della Basilica">
+      <div id="puntino-posizione"></div>
+    </div>
+
+    <!-- OVERLAY BROWSER: pulsante "Ferma audio" 
+         Nascosto automaticamente quando si entra in VR -->
+    <div id="audio-ui">
+      <button id="stop-audio" type="button">Ferma audio</button>
+    </div>
+
+    <a-scene>
+
+      <!-- Immagine 360° -->
+      <a-sky src="foto/facciata.jpeg"></a-sky>
+
+      <!-- MODELLI 3D INTERATTIVI -->
+        <a-entity
+          gltf-model="modelli/Digital display.glb"
+          position="0.4 -0.5 -0.5"
+          scale="1 1 1"
+          rotation="0 160 0"
+          class="clickable"
+          audio-guida="src: audio/audio facciata.wav; title: Facciata">
+        </a-entity>
+
+      <!-- RIG UTENTE
+           Contiene la camera (con cursore a sguardo e HUD VR agganciati,
+           così si muovono insieme allo sguardo) e i due controller Quest -->
+      <a-entity id="rig" position="0 1.5 4" rotation="0 70 0">
+        <a-entity camera look-controls wasd-controls rotation="0 0 0">
+
+          <!-- CURSORE A SGUARDO -->
+          <a-entity
+            cursor="fuse: true; fuseTimeout: 1000"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: brown; shader: flat"
+            raycaster="objects: .clickable">
+          </a-entity>
+
+          <!-- HUD VR — MINIMAPPA
+               Equivalente 3D di #minimappa, visibile solo in VR. 
+               Essendo parte della camera rimane ancorata ad essa -->
+          <a-entity id="hud-minimappa" position="0.85 0.55 -1.5" visible="false">
+            <a-plane
+              width="0.62" height="0.62"
+              material="color: #000000; opacity: 0.45; transparent: true; shader: flat">
+            </a-plane>
+            <a-image
+              src="minimappa.png"
+              width="0.58" height="0.58"
+              position="0 0 0.002">
+            </a-image>
+            <a-circle
+              id="puntino-posizione-hud"
+              radius="0.018"
+              position="0 0 0.004"
+              material="color: red; shader: flat; side: double">
+            </a-circle>
+          </a-entity>
+
+          <!-- HUD VR — PULSANTE "FERMA AUDIO"
+               Equivalente 3D di #audio-ui, visibile solo in VR -->
+          <a-entity id="hud-audio" position="0 -0.55 -1.5" visible="false">
+            <a-entity id="stop-audio-hud" class="clickable" position="0 -0.14 0.002">
+              <a-plane
+                id="stop-audio-plane"
+                width="0.46" height="0.138"
+                material="shader: flat; src: #stop-audio-canvas; transparent: true">
+              </a-plane>
+            </a-entity>
+          </a-entity>
+
+        </a-entity>
+
+        <!-- CONTROLLER META QUEST — puntatore laser
+             laser-controls include già il proprio raycaster: quando si
+             preme il grilletto puntando su un'entità ".clickable", A-Frame
+             emette lo stesso evento 'click' già gestito sopra  -->
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable" line="color: white; opacity: 0.75"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: white; opacity: 0.75"></a-entity>
+      </a-entity>
+
+      <!-- PORTALE: Facciata -->
+      <a-entity class="clickable" position="-15 2.7 -2.6" link-to="portone.html">
+        <a-torus
+          color="#00CFFF"
+          radius="0.55"
+          radius-tubular="0.035"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+        </a-torus>
+
+        <a-plane
+          class="clickable"
+          link-to="portone.html"
+          width="1.0"
+          height="1.0"
+          color="#001F33"
+          opacity="0.55"
+          side="double"
+          rotation="0 90 0">
+        </a-plane>
+
+        <a-text
+          value="Facciata"
+          align="center"
+          color="white"
+          position="0 -1 0"
+          width="10"
+          rotation="0 90 0">
+        </a-text>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
