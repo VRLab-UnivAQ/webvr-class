@@ -180,7 +180,7 @@
 
         // --- Gruppo minimappa (in alto a destra nel campo visivo) ---
         const mapGroup = document.createElement('a-entity');
-        mapGroup.setAttribute('position', '0.8 0.46 -1');
+        mapGroup.setAttribute('position', '0.85 0.55 -2');
 
         const mapWidth = 0.45, mapHeight = 0.45;
 
@@ -219,7 +219,7 @@
 
         // --- Gruppo audio (in basso a sinistra nel campo visivo) ---
         const audioGroup = document.createElement('a-entity');
-        audioGroup.setAttribute('position', '-0.78 -0.46 -1');
+        audioGroup.setAttribute('position', '0 -0.55 -1.5');
 
         const audioBg = document.createElement('a-plane');
         audioBg.setAttribute('width', '0.95');
@@ -323,12 +323,14 @@
             material="color: brown; shader: flat">
           </a-entity>
         </a-entity>
+          <!-- Controller VR (laser pointer): puntano ovunque, non solo al centro,
+           quindi possono selezionare anche i pulsanti dell'HUD fuori asse -->
+        <a-entity laser-controls="hand: left" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+        <a-entity laser-controls="hand: right" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+        
       </a-entity>
 
-      <!-- Controller VR (laser pointer): puntano ovunque, non solo al centro,
-           quindi possono selezionare anche i pulsanti dell'HUD fuori asse -->
-      <a-entity laser-controls="hand: left" line="color: #5cc9f5; opacity: 0.75"></a-entity>
-      <a-entity laser-controls="hand: right" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+      
 
       
       <!--Leggio Seconda Parte-->
