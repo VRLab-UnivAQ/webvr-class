@@ -344,7 +344,7 @@
           <!-- HUD VR — MINIMAPPA
                Equivalente 3D di #minimappa, visibile solo in VR. 
                Essendo parte della camera rimane ancorata ad essa -->
-          <a-entity id="hud-minimappa" position="0.85 0.55 -1.5" visible="false">
+          <a-entity id="hud-minimappa" position="0.85 0.55 -2" visible="false">
             <a-plane
               width="0.62" height="0.62"
               material="color: #000000; opacity: 0.45; transparent: true; shader: flat">
@@ -367,6 +367,7 @@
           <a-entity id="hud-audio" position="0 -0.55 -1.5" visible="false">
             <a-entity id="stop-audio-hud" class="clickable" position="0 -0.14 0.002">
               <a-plane
+                class="clickable"
                 id="stop-audio-plane"
                 width="0.46" height="0.138"
                 material="shader: flat; src: #stop-audio-canvas; transparent: true">
