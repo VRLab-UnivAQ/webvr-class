@@ -327,8 +327,8 @@
         </a-entity> 
         <!-- Controller VR (laser pointer): puntano ovunque, non solo al centro,
         quindi possono selezionare anche i pulsanti dell'HUD fuori asse -->
-      <a-entity laser-controls="hand: left" raycaster="objects: .clickable" line="color: #5cc9f5; opacity: 0.75"></a-entity>
-      <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+        <a-entity laser-controls="hand: left" raycaster="objects: .clickable" line="color: #5cc9f5; opacity: 0.75"></a-entity>
+        <a-entity laser-controls="hand: right" raycaster="objects: .clickable" line="color: #5cc9f5; opacity: 0.75"></a-entity>
       </a-entity>
 
 
@@ -411,6 +411,7 @@
 
         <!-- Superficie interna del portale (piano semitrasparente) -->
         <a-circle
+          class = "clickable"
           radius="2.4"
           color="#001F33"
           opacity="0.6"
